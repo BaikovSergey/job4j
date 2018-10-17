@@ -1,6 +1,6 @@
  package ru.job4j.calculate;
 
- //**
+ /**
  * Calculate
  *
  *@author Sergey Baikov
