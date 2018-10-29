@@ -38,4 +38,28 @@ public class BubbleSortTest {
         int[] expect = new int[] {1, 3};
         assertThat(result, Matchers.is(expect));
     }
+
+    /**
+     * Test sort.
+     */
+    @Test
+    public void whenSortArrayWithThreeElementsThenSortedArray() {
+        BubbleSort bubble = new BubbleSort();
+        int[] input = new int[] {3, 1, 0};
+        int[] result = bubble.sort(input);
+        int[] expect = new int[] {0, 1, 3};
+        assertThat(result, Matchers.is(expect));
+    }
+
+    /**
+     * Test sort.
+     */
+    @Test
+    public void whenNotNeedToSortArray() {
+        BubbleSort bubble = new BubbleSort();
+        int[] input = new int[] {1, 2, 3, 4, 5};
+        int[] result = bubble.sort(input);
+        int[] expect = new int[] {1, 2, 3, 4, 5};
+        assertThat(result, Matchers.is(expect));
+    }
 }
