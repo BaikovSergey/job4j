@@ -15,13 +15,16 @@ public class MatrixCheck {
      */
     public boolean mono(boolean[][] data) {
         boolean result = true;
-        for (int i = 0, j = data.length - 1; i < data.length && j >= 0; i++, j--) {
-            if (data[0][0] && data[0][data.length - 1] != data[i][j]) {
+        for (int i = 1; i < data.length; i++) {
+            if (data[0][0] != data[i][i]) {
+                result = false;
+                break;
+            }
+            if (data[0][data.length - 1] != data[i][data.length - 1 - i]) {
                 result = false;
                 break;
             }
         }
-
         return result;
     }
 }
