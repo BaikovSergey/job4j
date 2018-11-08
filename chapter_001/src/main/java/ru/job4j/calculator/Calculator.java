@@ -50,7 +50,6 @@ public class Calculator {
      * Method getResult.
      * @return result.
      */
-
     public double getResult() {
         return this.result;
     }
