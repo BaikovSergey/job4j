@@ -16,34 +16,29 @@ public class ArrayAdd {
      * @return массив.
      */
     public int[] add(int[] first, int[] second) {
-            int indexI = 0;
-            int indexJ = 0;
-            int indexK = 0;
+            int indArray1;
+            int indArray2;
+            int indArrayRes;
             int[] array = new int[first.length + second.length];
-            for (int i = 0, j = 0, k = 0; i < first.length & j < second.length & k <= array.length;) {
-                if (first[i] < second[j]) {
-                    array[k] = first[i];
-                    i++;
-                    k++;
-                    indexK++;
-                    indexI++;
+            for (indArray1=0, indArray2=0, indArrayRes=0; indArray1 < first.length & indArray2 < second.length & indArrayRes <= array.length;) {
+                if (first[indArray1] < second[indArray2]) {
+                    array[indArrayRes] = first[indArray1];
+                    indArray1++;
                 } else {
-                    array[k] = second[j];
-                    j++;
-                    k++;
-                    indexK++;
-                    indexJ++;
+                    array[indArrayRes] = second[indArray2];
+                    indArray2++;
                 }
+                indArrayRes++;
             }
-            if (indexI != first.length) {
-                for (int c = indexI; c < first.length; c++) {
-                    array[indexK] = first[c];
-                    indexK++;
+            if (indArray1 != first.length) {
+                for (int i = indArray1; i < first.length; i++) {
+                    array[indArrayRes] = first[i];
+                    indArrayRes++;
                 }
             } else {
-                for (int d = indexJ; d < second.length; d++) {
-                    array[indexK] = second[d];
-                    indexK++;
+                for (int j = indArray2; j < second.length; j++) {
+                    array[indArrayRes] = second[j];
+                    indArrayRes++;
                 }
             }
         return array;
