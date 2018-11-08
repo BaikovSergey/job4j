@@ -14,7 +14,7 @@ public class Paint {
      * @return рисунок правой части пирамиды.
      */
     public String rightTrl(int height) {
-                    return this.loopBy(
+        return this.loopBy(
                     height,
                     height,
                     (row, column) -> row >= column
@@ -26,8 +26,8 @@ public class Paint {
      * @param height высота пирамиды.
      * @return рисунок левой части пирамиды.
      */
-        public String leftTrl(int height) {
-            return this.loopBy(
+    public String leftTrl(int height) {
+        return this.loopBy(
                     height,
                     height,
                     (row, column) -> row >= height - column - 1

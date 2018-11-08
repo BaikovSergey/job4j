@@ -1,11 +1,31 @@
 package ru.job4j.condition;
 
+/**
+ * @author Sergey Baikov
+ * @version $Id$
+ * @since 0.1
+ */
 public class Triangle {
+
+    /**
+     * Содержит значение точки a.
+     */
     private Point a;
+
+    /**
+     * Содержит значение точки b.
+     */
     private Point b;
+
+    /**
+     * Содержит значение точки c.
+     */
     private Point c;
 
-    private static final double HALFP = 0.5D;
+    /**
+     * Содержит значение 0.5 для расчета полупериметра.
+     */
+    private static final double HALFPERIMETR = 0.5D;
 
     public Triangle(Point a, Point b, Point c) {
         this.a = a;
@@ -26,7 +46,7 @@ public class Triangle {
      * @return Полупериметр.
      */
     public double period(double ab, double ac, double bc) {
-        return (ab + ac + bc) * HALFP;
+        return (ab + ac + bc) * HALFPERIMETR;
     }
 
     /**
@@ -35,18 +55,19 @@ public class Triangle {
      * @return Вернуть прощадь, если треугольник существует или -1, если треугольника нет.
      */
     public double area() {
-        double rsl = -1; // мы устанавливаем значение -1, так как может быть что треугольника нет. Это значение говорит о том. что треугольника нет.
+        double result = -1;
         double ab = this.a.distanceTo(this.b);
         double ac = this.a.distanceTo(this.c);
         double bc = this.b.distanceTo(this.c);
         double p = this.period(ab, ac, bc);
         if (this.exist(ab, ac, bc)) {
-            rsl = Math.sqrt(
+            result = Math.sqrt(
                  p * (p - ab) * (p - ac) * (p - bc)
             );
         }
-        return rsl;
+        return result;
     }
+
     /**
      * Метод проверяет можно ли построить треугольник с такими длинами сторон.
      *

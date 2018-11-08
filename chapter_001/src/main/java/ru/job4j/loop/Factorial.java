@@ -13,10 +13,10 @@ public class Factorial {
      * @return произведение.
      */
     public int calc(int n) {
-        int fac = 1;
+        int factorial = 1;
         for (int i = 1; i <= n; i++) {
-            fac *= i;
+            factorial *= i;
         }
-        return fac;
+        return factorial;
     }
 }

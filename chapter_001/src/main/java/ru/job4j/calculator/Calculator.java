@@ -7,6 +7,7 @@ package ru.job4j.calculator;
  */
 
 public class Calculator {
+
     /**
      * Contains calculations result.
      */
@@ -17,10 +18,10 @@ public class Calculator {
      * @param first First value.
      * @param second Second value.
      */
-
     public void add(double first, double second) {
         this.result = first + second;
     }
+
     /**
      * Method subtract.
      * @param first First value.
@@ -29,6 +30,7 @@ public class Calculator {
     public void subtract(double first, double second) {
         this.result = first - second;
     }
+
     /**
      * Method div.
      * @param first First value.
@@ -37,6 +39,7 @@ public class Calculator {
     public void div(double first, double second) {
         this.result = first / second;
     }
+
     /**
      * Method multiple.
      * @param first First value.

@@ -1,19 +1,22 @@
 package ru.job4j.converter;
+
 /**
  * Корвертор валюты.
  * @author Sergey Baikov
  * @since 22.10.18
  */
-
 public class Converter {
+
     /**
      * Курс доллара
      */
     private static final short KURSDOLLAR = 60;
+
     /**
      * Курс евро
      */
     private static final short KURSEUVRO = 70;
+
     /**
      * Конвертируем рубли в евро.
      * @param value рубли.
@@ -31,6 +34,7 @@ public class Converter {
     public int rubleToDollar(int value) {
         return value / KURSDOLLAR;
     }
+
     /**
      * Конвертируем евро в рубли.
      * @param value евро.
