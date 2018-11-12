@@ -1,11 +1,11 @@
-package ru.job4j.Professions;
+package ru.job4j.professions;
 
 public class Engineer extends Professions {
-    public Engineer (String name, String profession) {
-        super(name,profession);
+    public Engineer(String name, String profession) {
+        super(name, profession);
     }
 
-    private void buildHouse () {
+    private void buildHouse() {
 
     }
 }

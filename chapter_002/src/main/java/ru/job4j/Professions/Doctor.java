@@ -1,10 +1,10 @@
-package ru.job4j.Professions;
+package ru.job4j.professions;
 
 public class Doctor extends Professions {
-    public Doctor (String name, String profession) {
-        super(name,profession);
+    public Doctor(String name, String profession) {
+        super(name, profession);
     }
-    private void treatThePatient (){
+    private void treatThePatient() {
 
     }
 }
