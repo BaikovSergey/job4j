@@ -1,6 +1,8 @@
 package ru.job4j.tracker;
 
 
+
+
 import java.util.Arrays;
 
 /**
@@ -44,9 +46,9 @@ public class Tracker {
      * @param item новая заявка.
      */
     public void replace(String id, Item item) {
-
-    this.items[0] = item;
-    }
+       int index = Arrays.asList(items).indexOf(findById(id));
+       this.items[index] = item;
+        }
 
     /**
      * Метод удаляет ячейку в массиве this.items.
