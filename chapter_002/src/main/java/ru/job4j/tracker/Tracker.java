@@ -24,7 +24,7 @@ public class Tracker {
      * @param item новая заявка
      */
     public Item add(Item item) {
-        item.setId(this.generateId());
+        item.setId(this.generateId(item));
         this.items[this.position++] = item;
         return item;
     }
@@ -34,17 +34,18 @@ public class Tracker {
      * Так как у заявки нет уникальности полей, имени и описание. Для идентификации нам нужен уникальный ключ.
      * @return Уникальный ключ.
      */
-    private String generateId() {
-        return  String.valueOf(System.currentTimeMillis() + Math.random() * 1000);
+    private String generateId(Item item) {
+        return  String.valueOf(item.getId() + Math.random() * 1000);
     }
 
     /**
      * Метод заменяет ячейку в массиве this.items.
-     * @param id id.
+     * @param id id заявки, которую необходимо заменить.
      * @param item новая заявка.
      */
     public void replace(String id, Item item) {
 
+    this.items[0] = item;
     }
 
     /**
@@ -61,7 +62,7 @@ public class Tracker {
      */
     public Item[] findAll() {
     int index = 0;
-    for (int i = 0; i < items.length; i++) {
+    for (int i = 0; i < this.items.length; i++) {
         if (this.items[i] == null) {
             break;
         } else {
@@ -89,7 +90,15 @@ public class Tracker {
      * @return искомую заявку.
      */
     public Item findById(String id) {
-        //Реализовать метод.
-        return null;
+        int index = 0;
+        for (int i = 0; i < this.items.length; i++) {
+           String itemId = this.items[i].getId();
+            if (itemId.equals(id)) {
+                break;
+            } else {
+                index++;
+            }
+        }
+        return this.items[index];
     }
 }
