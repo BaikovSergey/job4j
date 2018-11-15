@@ -57,8 +57,8 @@ public class Tracker {
     public void delete(String id) {
     int index = 0;
     for (int i = 0; i < this.items.length; i++) {
-        String itemId = this.items[i].getId();
-        if (!itemId.equals(id)) {
+        Item itemId = this.items[i];
+        if (itemId != null && itemId.getId().equals(id)) {
             index++;
         }
     }
@@ -90,16 +90,16 @@ public class Tracker {
     public Item[] findByName(String key) {
         int index = 0;
         for (int i = 0; i < this.items.length; i++) {
-            String name = this.items[i].getName();
-            if (name.equals(key)) {
+            Item name = this.items[i];
+            if (name != null && name.getName().equals(key)) {
                 index++;
             }
         }
         Item finds[] = Arrays.copyOf(this.items, index);
         index = 0;
         for (int i = 0; i < this.items.length; i++) {
-            String name = this.items[i].getName();
-            if (name.equals(key)) {
+            Item name = this.items[i];
+            if (name != null && name.getName().equals(key)) {
                 finds[index] = this.items[i];
                 index++;
             }
@@ -117,8 +117,8 @@ public class Tracker {
         Item result = null;
         int index = 0;
         for (int i = 0; i < this.items.length; i++) {
-           String itemId = this.items[i].getId();
-            if (itemId.equals(id)) {
+           Item itemId = this.items[i];
+            if (itemId != null && itemId.getId().equals(id)) {
                 result = this.items[index];
                 break;
             } else {

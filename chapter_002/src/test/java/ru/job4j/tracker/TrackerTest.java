@@ -54,7 +54,7 @@ public class TrackerTest {
         tracker.add(first);
         Item second = new Item("test2", "testDescription2", 1234L);
         tracker.add(second);
-        tracker.delete(second.getId());
-        assertThat(tracker.findAll()[0], is(first));
+        tracker.delete(first.getId());
+        assertThat(tracker.findAll()[0], is(second));
     }
 }
