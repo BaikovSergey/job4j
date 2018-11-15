@@ -55,7 +55,16 @@ public class Tracker {
      * @param id id.
      */
     public void delete(String id) {
-
+    int index = 0;
+    for (int i = 0; i < this.items.length; i++) {
+        String itemId = this.items[i].getId();
+        if (!itemId.equals(id)) {
+            index++;
+        }
+    }
+    for (int i = index - 1; i < this.items.length - 1; i++) {
+        this.items[i] = this.items[i + 1];
+        }
     }
 
     /**
@@ -65,9 +74,7 @@ public class Tracker {
     public Item[] findAll() {
     int index = 0;
     for (int i = 0; i < this.items.length; i++) {
-        if (this.items[i] == null) {
-            break;
-        } else {
+        if (this.items[i] != null) {
             index++;
         }
     }
@@ -81,8 +88,23 @@ public class Tracker {
      * @return возвращает массив элементов.
      */
     public Item[] findByName(String key) {
-        //Реализовать метод.
-        return null;
+        int index = 0;
+        for (int i = 0; i < this.items.length; i++) {
+            String name = this.items[i].getName();
+            if (name.equals(key)) {
+                index++;
+            }
+        }
+        Item finds[] = Arrays.copyOf(this.items, index);
+        index = 0;
+        for (int i = 0; i < this.items.length; i++) {
+            String name = this.items[i].getName();
+            if (name.equals(key)) {
+                finds[index] = this.items[i];
+                index++;
+            }
+        }
+        return finds;
     }
 
     /**
@@ -92,15 +114,17 @@ public class Tracker {
      * @return искомую заявку.
      */
     public Item findById(String id) {
+        Item result = null;
         int index = 0;
         for (int i = 0; i < this.items.length; i++) {
            String itemId = this.items[i].getId();
             if (itemId.equals(id)) {
+                result = this.items[index];
                 break;
             } else {
                 index++;
             }
         }
-        return this.items[index];
+        return result;
     }
 }
