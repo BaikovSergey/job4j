@@ -23,12 +23,39 @@ public class TrackerTest {
     @Test
     public void whenReplaceNameThenReturnNewName() {
         Tracker tracker = new Tracker();
-        Item previous = new Item("test1","testDescription",123L);
+        Item previous = new Item("test1", "testDescription", 123L);
         tracker.add(previous);
-        Item next = new Item("test2","testDescription2",1234L);
+        Item next = new Item("test2", "testDescription2", 1234L);
         next.setId(previous.getId());
         tracker.replace(previous.getId(), next);
         assertThat(tracker.findById(previous.getId()).getName(), is("test2"));
+    }
+
+    /**
+     * Test delete.
+     */
+    @Test
+    public void whenDeleteOneObjectThenOneLeftInArray() {
+        Tracker tracker = new Tracker();
+        Item first = new Item("test1", "testDescription", 123L);
+        tracker.add(first);
+        Item second = new Item("test2",  "testDescription2", 1234L);
+        tracker.add(second);
+        tracker.delete(first.getId());
+        assertThat(tracker.findAll()[0], is(second));
+    }
+
+    /**
+     * Test findAll.
+     */
+    @Test
+    public void whenTwoObjectsInArrayWhenArrayLengthIsTwo() {
+        Tracker tracker = new Tracker();
+        Item first = new Item("test1", "testDescription", 123L);
+        tracker.add(first);
+        Item second = new Item("test2", "testDescription2", 1234L);
+        tracker.add(second);
+        assertThat(tracker.findAll().length, is(2));
     }
 
     /**
@@ -45,16 +72,13 @@ public class TrackerTest {
     }
 
     /**
-     * Test delete.
+     * Test findById.
      */
     @Test
-    public void whenDeleteOneObjectThenOneLeftInArray() {
+    public void whenFindByIdWhenFindObjectWithThisId() {
         Tracker tracker = new Tracker();
         Item first = new Item("test1", "testDescription", 123L);
         tracker.add(first);
-        Item second = new Item("test2", "testDescription2", 1234L);
-        tracker.add(second);
-        tracker.delete(first.getId());
-        assertThat(tracker.findAll()[0], is(second));
+        assertThat(tracker.findById(first.getId()).getId(), is(first.getId()));
     }
 }
