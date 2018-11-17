@@ -47,6 +47,8 @@ public class Tracker {
             Item itemId = this.items[i];
             if (itemId != null && itemId.getId().equals(id)) {
                 this.items[i] = item;
+                item.setId(id);
+                break;
             }
         }
     }
@@ -61,6 +63,8 @@ public class Tracker {
             if (itemId != null && itemId.getId().equals(id)) {
                 System.arraycopy(this.items, i + 1, this.items, i, this.items.length - (i + 1));
                 this.items[this.items.length - 1] = null;
+                position--;
+                break;
             }
         }
     }
@@ -70,12 +74,7 @@ public class Tracker {
      * @return возвращает копию массива this.items без null элементов.
      */
     public Item[] findAll() {
-        for (int i = 0; i < this.items.length; i++) {
-        if (this.items[i] != null) {
-            return Arrays.copyOf(this.items, position);
-            }
-        }
-    return null;
+        return Arrays.copyOf(this.items, position);
     }
 
     /**
