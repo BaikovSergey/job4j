@@ -20,7 +20,7 @@ public class ArrayAdd {
             int indArray2;
             int indArrayRes;
             int[] array = new int[first.length + second.length];
-            for (indArray1=0, indArray2=0, indArrayRes=0; indArray1 < first.length & indArray2 < second.length & indArrayRes <= array.length;) {
+            for (indArray1 = 0, indArray2 = 0, indArrayRes = 0; indArray1 < first.length & indArray2 < second.length & indArrayRes <= array.length;) {
                 if (first[indArray1] < second[indArray2]) {
                     array[indArrayRes] = first[indArray1];
                     indArray1++;
