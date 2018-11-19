@@ -43,10 +43,12 @@ public class Tracker {
      * @param item новая заявка.
      */
     public void replace(String id, Item item) {
-        for (int i = 0; i < this.items.length; i++) {
+        for (int i = 0; i < position; i++) {
             Item itemId = this.items[i];
             if (itemId != null && itemId.getId().equals(id)) {
                 this.items[i] = item;
+                item.setId(id);
+                break;
             }
         }
     }
@@ -56,11 +58,13 @@ public class Tracker {
      * @param id id.
      */
     public void delete(String id) {
-        for (int i = 0; i < this.items.length; i++) {
+        for (int i = 0; i < position; i++) {
             Item itemId = this.items[i];
             if (itemId != null && itemId.getId().equals(id)) {
                 System.arraycopy(this.items, i + 1, this.items, i, this.items.length - (i + 1));
                 this.items[this.items.length - 1] = null;
+                position--;
+                break;
             }
         }
     }
@@ -70,12 +74,7 @@ public class Tracker {
      * @return возвращает копию массива this.items без null элементов.
      */
     public Item[] findAll() {
-        for (int i = 0; i < this.items.length; i++) {
-        if (this.items[i] != null) {
-            return Arrays.copyOf(this.items, position);
-            }
-        }
-    return null;
+        return Arrays.copyOf(this.items, position);
     }
 
     /**
@@ -87,7 +86,7 @@ public class Tracker {
     public Item[] findByName(String key) {
         int index = 0;
         Item[] finds = new Item[position];
-        for (int i = 0; i < this.items.length; i++) {
+        for (int i = 0; i < position; i++) {
             Item name = this.items[i];
             if (name != null && name.getName().equals(key)) {
                 finds[index] = this.items[i];
@@ -105,7 +104,7 @@ public class Tracker {
      */
     public Item findById(String id) {
         Item result = null;
-        for (int i = 0; i < this.items.length; i++) {
+        for (int i = 0; i < position; i++) {
            Item itemId = this.items[i];
             if (itemId != null && itemId.getId().equals(id)) {
                 result = this.items[i];
