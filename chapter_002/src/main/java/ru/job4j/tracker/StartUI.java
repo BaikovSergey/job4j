@@ -31,9 +31,10 @@ public class StartUI {
     private static final String FINDBYID = "4";
 
     /**
-     * Константа меню для поиска заявки по имени.
+     * Константа меню для поиска заявки по Id.
      */
-    private static final String ADD = "5";
+    private static final String FINDBYNAME = "5";
+
 
     /**
      * Константа для выхода из цикла.
@@ -68,16 +69,18 @@ public class StartUI {
             this.showMenu();
             String answer = this.input.ask("Введите пункт меню : ");
             if (ADD.equals(answer)) {
-                //добавление заявки вынесено в отдельный метод.
                 this.createItem();
             } else if (FINDALL.equals(answer)) {
                 this.findAllItems();
             } else if (REPLACE.equals(answer)) {
-                //tracker.replace();
+                this.replaceItem();
             } else if (DELETE.equals(answer)) {
                 this.deleteItem();
-            }
-            else if (EXIT.equals(answer)) {
+            } else  if (FINDBYID.equals(answer)) {
+                this.findItemById();
+            } else if (FINDBYNAME.equals(answer)) {
+                this.findItemByName();
+            } else if (EXIT.equals(answer)) {
                 exit = true;
             }
         }
@@ -101,7 +104,7 @@ public class StartUI {
     private void findAllItems() {
         System.out.println("------------ Вывод всех заявок --------------");
         for (int i = 0; i < tracker.findAll().length; i++) {
-            System.out.println(i+1 + ". " + tracker.findAll()[i].getName());
+            System.out.println(i + 1 + ". " + tracker.findAll()[i].getName());
         }
     }
 
@@ -110,11 +113,14 @@ public class StartUI {
      */
     private void replaceItem() {
         System.out.println("------------ Замена заявки --------------");
-        String id = this.input.ask("Введите Id заявки :");
+        String id = this.input.ask("Введите Id заявки, котрую хотите заменить: ");
+        String name = this.input.ask("Введите имя новой заявки: ");
         String desc = this.input.ask("Введите описание заявки :");
-        Item item = new Item(id, desc);
-        this.tracker.add(item);
-        System.out.println("------------ Новая заявка с getId: " + item.getId() + "-----------");
+        Item item = new Item(name, desc);
+        this.tracker.replace(name, item);
+        System.out.println("------------ Заявка успешно заменена -----------");
+        System.out.println("Имя заявки: " + tracker.findById(id).getName());
+        System.out.println("Id заявки: " + id);
     }
 
     /**
@@ -145,10 +151,11 @@ public class StartUI {
     private void findItemByName() {
         System.out.println("------------ Поиск заявки по имени --------------");
         String name = this.input.ask("Введите имя заявки :");
-        tracker.findByName(name);
-        System.out.println("------------ Заявка с Id: " + id + " -----------");
-        System.out.println("Имя заявки: " + tracker.findById(id).getName());
-        System.out.println("Описание заявкаи : " + tracker.findById(id).getDesc());
+        System.out.println("------------ Заявки с именем: " + name + " -----------");
+            for (int i = 0; i < tracker.findByName(name).length; i++) {
+                System.out.println("Id заявки: " + tracker.findByName(name)[i].getId());
+                System.out.println("Описание заявки: " + tracker.findByName(name)[i].getDesc());
+            }
     }
 
     /**
@@ -158,7 +165,7 @@ public class StartUI {
         System.out.println("Меню.");
         System.out.println("0. Добавление новой заявки.");
         System.out.println("1. Показать все заявки.");
-        System.out.println("2. Редактирование заявки.");
+        System.out.println("2. Замена заявки.");
         System.out.println("3. Удаление заявки.");
         System.out.println("4. Поиск заявки по Id.");
         System.out.println("5. Поиск заявки по имени.");
@@ -168,7 +175,7 @@ public class StartUI {
 
     /**
      * Запускт программы.
-     * @param args
+     * @param args args
      */
     public static void main(String[] args) {
         new StartUI(new ConsoleInput(), new Tracker()).init();
