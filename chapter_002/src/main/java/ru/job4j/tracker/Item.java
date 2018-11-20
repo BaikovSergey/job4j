@@ -8,6 +8,15 @@ public class Item {
     private long created;
     private String[] comments;
 
+    @Override
+    public String toString() {
+        return "Имя заявки: " + this.name + "\nId заявки: " + this.id + "\nОписание заявки: " + this.desc;
+    }
+
+    public Item(String name, String desc) {
+        this.name = name;
+        this.desc = desc;
+    }
     public Item(String name, String desc, long created) {
         this.name = name;
         this.desc = desc;
