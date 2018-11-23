@@ -34,7 +34,7 @@ public class Tracker {
      * @return Уникальный ключ.
      */
     private String generateId() {
-        return  String.valueOf(System.currentTimeMillis() + Math.random() * 1000);
+        return  String.valueOf((Math.random() * 1000));
     }
 
     /**

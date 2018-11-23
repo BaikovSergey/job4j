@@ -108,7 +108,6 @@ public class StartUI {
             System.out.println(founds[i].toString());
             System.out.println(" ");
         }
-
     }
 
     /**
@@ -120,9 +119,9 @@ public class StartUI {
         String name = this.input.ask("Введите имя новой заявки: ");
         String desc = this.input.ask("Введите описание заявки :");
         Item item = new Item(name, desc);
-        if (tracker.replace(name, item)) {
+        if (tracker.replace(id, item)) {
             System.out.println("------------ Заявка успешно заменена -----------");
-            System.out.println("Имя заявки: " + tracker.findById(id).getName());
+            System.out.println("Имя заявки: " + name);
             System.out.println("Id заявки: " + id);
         } else  {
             System.out.println("------------ Ошибка. Заявка с Id: " + id + " не найдена -----------");
@@ -151,12 +150,16 @@ public class StartUI {
         System.out.println("------------ Поиск заявки по Id --------------");
         String id = this.input.ask("Введите Id заявки :");
          Item founds = tracker.findById(id);
-        System.out.println("------------ Заявка с Id: " + id + " -----------");
-        System.out.println(founds.toString());
+         if (founds != null && founds.getId().equals(id)) {
+             System.out.println("------------ Заявка с Id: " + id + " -----------");
+             System.out.println(founds.toString());
+         } else {
+             System.out.println("------------ Ошибка. Заявка с Id: " + id + " не найдена -----------");
+         }
     }
 
     /**
-     * Метод реализует поиск заявки по Id.
+     * Метод реализует поиск заявки по Name.
      */
     private void findItemByName() {
         System.out.println("------------ Поиск заявки по имени --------------");
