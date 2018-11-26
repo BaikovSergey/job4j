@@ -10,7 +10,17 @@ public class Item {
 
     @Override
     public String toString() {
-        return "Имя заявки: " + this.name + "\nId заявки: " + this.id + "\nОписание заявки: " + this.desc;
+       return (new StringBuilder()
+                .append("Имя заявки: ")
+                .append(this.name)
+                .append(System.lineSeparator())
+                .append("Id заявки: ")
+                .append(this.id)
+                .append(System.lineSeparator())
+                .append("Описание заявки: ")
+                .append(this.desc))
+                .toString();
+
     }
 
     public Item(String name, String desc) {

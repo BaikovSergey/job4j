@@ -106,7 +106,7 @@ public class StartUI {
         Item[] founds = tracker.findAll();
         for (int i = 0; i < founds.length; i++) {
             System.out.println(founds[i].toString());
-            System.out.println(" ");
+            System.out.println(System.lineSeparator());
         }
     }
 
@@ -175,14 +175,23 @@ public class StartUI {
      * Метод выводит на консоль пункты меню.
      */
     private void showMenu() {
-        System.out.println("Меню.");
-        System.out.println("0. Добавление новой заявки.");
-        System.out.println("1. Показать все заявки.");
-        System.out.println("2. Замена заявки.");
-        System.out.println("3. Удаление заявки.");
-        System.out.println("4. Поиск заявки по Id.");
-        System.out.println("5. Поиск заявки по имени.");
-        System.out.println("6. Завершение работы программы.");
+        System.out.println(new StringBuilder()
+                .append("Меню.")
+                .append(System.lineSeparator())
+                .append("0. Добавление новой заявки.")
+                .append(System.lineSeparator())
+                .append("1. Показать все заявки.")
+                .append(System.lineSeparator())
+                .append("2. Замена заявки.")
+                .append(System.lineSeparator())
+                .append("3. Удаление заявки.")
+                .append(System.lineSeparator())
+                .append("4. Поиск заявки по Id.")
+                .append(System.lineSeparator())
+                .append("5. Поиск заявки по имени.")
+                .append(System.lineSeparator())
+                .append("6. Завершение работы программы.")
+                .append(System.lineSeparator()));
 
     }
 

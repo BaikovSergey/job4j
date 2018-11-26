@@ -106,25 +106,44 @@ public class StartUITest {
         Input input = new StubInput(new String[]{"1", "6"});
         new StartUI(input, tracker).init();
         StringBuilder menu = new StringBuilder()
-                            .append("Меню.\r")
-                            .append("\n0. Добавление новой заявки.\r")
-                            .append("\n1. Показать все заявки.\r")
-                            .append("\n2. Замена заявки.\r")
-                            .append("\n3. Удаление заявки.\r")
-                            .append("\n4. Поиск заявки по Id.\r")
-                            .append("\n5. Поиск заявки по имени.\r")
-                            .append("\n6. Завершение работы программы.");
+                .append("Меню.")
+                .append(System.lineSeparator())
+                .append("0. Добавление новой заявки.")
+                .append(System.lineSeparator())
+                .append("1. Показать все заявки.")
+                .append(System.lineSeparator())
+                .append("2. Замена заявки.")
+                .append(System.lineSeparator())
+                .append("3. Удаление заявки.")
+                .append(System.lineSeparator())
+                .append("4. Поиск заявки по Id.")
+                .append(System.lineSeparator())
+                .append("5. Поиск заявки по имени.")
+                .append(System.lineSeparator())
+                .append("6. Завершение работы программы.")
+                .append(System.lineSeparator());
+
+
 
         assertThat(
                 new String(this.out.toByteArray()),
                 is(new StringBuilder()
-                        .append(menu + "\r")
-                        .append("\n------------ Вывод всех заявок --------------\r")
-                        .append("\nИмя заявки: test name\r")
-                        .append("\nId заявки: " + id + "\r")
-                        .append("\nОписание заявки: desc\r")
-                        .append("\n \r")
-                        .append("\n" + menu + "\r")
+                        .append(menu)
+                        .append(System.lineSeparator())
+                        .append("------------ Вывод всех заявок --------------")
+                        .append(System.lineSeparator())
+                        .append("Имя заявки: test name")
+                        .append(System.lineSeparator())
+                        .append("Id заявки: ")
+                        .append(id)
+                        .append(System.lineSeparator())
+                        .append("Описание заявки: desc")
+                        .append(System.lineSeparator())
+                        .append(System.lineSeparator())
+                        .append(System.lineSeparator())
+                        .append(menu)
+                        .append(System.lineSeparator())
+                        .toString()
 
                 )
         );
