@@ -23,6 +23,9 @@
 hs_err_pid*
 <<<<<<< HEAD
 target
+.idea
+
+*.iml
 =======
 
 target
@@ -30,4 +33,4 @@ target
 .idea
 
 *.iml
->>>>>>> 74f5f30196523430ac766750def460a5484bcd22
+>>>>>>> refs/remotes/origin/master
