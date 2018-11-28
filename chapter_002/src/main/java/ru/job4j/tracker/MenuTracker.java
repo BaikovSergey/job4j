@@ -1,8 +1,5 @@
 package ru.job4j.tracker;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class MenuTracker {
 
     /**
@@ -13,10 +10,12 @@ public class MenuTracker {
      * хранит ссылку на объект .
      */
     private Tracker tracker;
+
+    private StartUI ui;
     /**
      * хранит ссылку на массив типа UserAction.
      */
-    private List<UserAction> actions = new ArrayList<>();
+    private UserAction[] actions = new UserAction[7];
 
     /**
      * Конструктор.
@@ -30,25 +29,16 @@ public class MenuTracker {
     }
 
     /**
-     * Метод для получения массива меню.
-     *
-     * @return длину массива
-     */
-    public int getActionsLentgh() {
-        return this.actions.size();
-    }
-
-    /**
      * Метод заполняет массив.
      */
-    public void fillActions() {
-        this.actions.add(new AddItem(0, "Добавление новой заявки."));
-        this.actions.add(new ShowItems(1, "Показать все заявки."));
-        this.actions.add(new MenuTracker.EditItem(2, "Замена заявки."));
-        this.actions.add(new MenuTracker.DeleteItem(3, "Удаление заявки."));
-        this.actions.add(new FindItemById(4, "Поиск заявки по Id."));
-        this.actions.add(new FindItemsByName(5, "Поиск заявки по имени."));
-        this.actions.add(new ExitProgram(6, "Завершение работы программы."));
+    public void fillActions(StartUI ui) {
+        this.actions[0] = new AddItem();
+        this.actions[1] = new ShowItems();
+        this.actions[2] = new MenuTracker.EditItem();
+        this.actions[3] = new MenuTracker.DeleteItem();
+        this.actions[4] = new FindItemById();
+        this.actions[5] = new FindItemsByName();
+        this.actions[6] = new ExitProgram(ui);
     }
 
     /**
@@ -57,7 +47,7 @@ public class MenuTracker {
      * @param key ключ операции
      */
     public void select(int key) {
-        this.actions.get(key).execute(this.input, this.tracker);
+        this.actions[key].execute(this.input, this.tracker);
     }
 
     /**
@@ -74,7 +64,7 @@ public class MenuTracker {
 
         @Override
         public int key() {
-        return ADD;
+        return 0;
         }
 
         @Override
@@ -89,7 +79,7 @@ public class MenuTracker {
 
         @Override
         public String info() {
-            return "Добавление новой заявки.";
+            return "0. Добавление новой заявки.";
         }
     }
 
@@ -97,7 +87,7 @@ public class MenuTracker {
 
         @Override
         public int key() {
-            return FINDALL;
+            return 1;
         }
 
         @Override
@@ -112,7 +102,7 @@ public class MenuTracker {
 
         @Override
         public String info() {
-            return "Показать все заявки";
+            return "1. Показать все заявки";
         }
     }
 
@@ -120,7 +110,7 @@ public class MenuTracker {
 
         @Override
         public int key() {
-            return REPLACE;
+            return 2;
         }
 
         @Override
@@ -141,7 +131,7 @@ public class MenuTracker {
 
         @Override
         public String info() {
-            return "Заменить заявку";
+            return "2. Заменить заявку";
         }
     }
 
@@ -149,7 +139,7 @@ public class MenuTracker {
 
         @Override
         public int key() {
-            return DELETE;
+            return 3;
         }
         @Override
         public void execute(Input input, Tracker tracker) {
@@ -164,7 +154,7 @@ public class MenuTracker {
 
         @Override
         public String info() {
-            return "Удалить заявку";
+            return "3. Удалить заявку";
         }
     }
 
@@ -172,7 +162,7 @@ public class MenuTracker {
 
         @Override
         public int key() {
-            return FINDBYID;
+            return 4;
         }
         @Override
         public void execute(Input input, Tracker tracker) {
@@ -189,7 +179,7 @@ public class MenuTracker {
 
         @Override
         public String info() {
-            return "Найти заявку по Id";
+            return "4. Найти заявку по Id";
         }
     }
 
@@ -197,7 +187,7 @@ public class MenuTracker {
 
         @Override
         public int key() {
-            return FINDBYNAME;
+            return 5;
         }
         @Override
         public void execute(Input input, Tracker tracker) {
@@ -212,25 +202,31 @@ public class MenuTracker {
 
         @Override
         public String info() {
-            return "Найти заявку по имени";
+            return "5. Найти заявку по имени";
         }
     }
 
     public class ExitProgram implements UserAction {
+        private final StartUI ui;
+
+        public ExitProgram(StartUI ui) {
+            this.ui = ui;
+        }
+
 
         @Override
         public int key() {
-            return EXIT;
+            return 6;
         }
         @Override
         public void execute(Input input, Tracker tracker) {
             System.out.println("------------ Завершение работы программы --------------");
-            // заполнить
+            this.ui.exit();
         }
 
         @Override
         public String info() {
-            return "Завершение работы программы.";
+            return "6. Завершение работы программы.";
         }
     }
 }

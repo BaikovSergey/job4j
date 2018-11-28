@@ -1,5 +1,8 @@
 package ru.job4j.tracker;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * @version $Id$
  * @since 19.11.18
@@ -39,7 +42,11 @@ public class StartUI {
     /**
      * Константа для выхода из цикла.
      */
-    private static final String EXIT = "6";
+    private boolean EXIT = false;
+
+    public void exit() {
+        this.EXIT = true;
+    }
     /**
      * Получение данных от пользователя.
      */
@@ -64,26 +71,13 @@ public class StartUI {
      * Основой цикл программы.
      */
     public void init() {
-        boolean exit = false;
-        while (!exit) {
-            this.showMenu();
-            String answer = this.input.ask("Введите пункт меню : ");
-            if (ADD.equals(answer)) {
-                this.createItem();
-            } else if (FINDALL.equals(answer)) {
-                this.findAllItems();
-            } else if (REPLACE.equals(answer)) {
-                this.replaceItem();
-            } else if (DELETE.equals(answer)) {
-                this.deleteItem();
-            } else  if (FINDBYID.equals(answer)) {
-                this.findItemById();
-            } else if (FINDBYNAME.equals(answer)) {
-                this.findItemByName();
-            } else if (EXIT.equals(answer)) {
-                exit = true;
-            }
-        }
+        MenuTracker menu = new MenuTracker(this.input, this.tracker);
+        menu.fillActions(this);
+        do {
+            menu.show();
+            int key = Integer.valueOf(input.ask("Выберите пункт меню: "));
+            menu.select(key);
+        } while (!this.EXIT);
     }
 
     /**
