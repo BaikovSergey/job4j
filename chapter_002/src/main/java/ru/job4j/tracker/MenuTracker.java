@@ -28,6 +28,10 @@ public class MenuTracker {
         this.tracker = tracker;
     }
 
+    public int getActionsLenght() {
+        return this.actions.length;
+    }
+
     /**
      * Метод заполняет массив.
      */
@@ -54,6 +58,8 @@ public class MenuTracker {
      * Метод выводит на экран меню.
      */
     public void show() {
+        System.out.println(new StringBuilder()
+                .append("Меню."));
         for (UserAction action : this.actions) {
             if (action != null) {
                 System.out.println(action.info());
@@ -79,7 +85,7 @@ public class MenuTracker {
 
         @Override
         public String info() {
-            return "0. Добавление новой заявки.";
+            return "0. Добавить новую заявку.";
         }
     }
 
@@ -102,7 +108,7 @@ public class MenuTracker {
 
         @Override
         public String info() {
-            return "1. Показать все заявки";
+            return "1. Показать все заявки.";
         }
     }
 
@@ -131,7 +137,7 @@ public class MenuTracker {
 
         @Override
         public String info() {
-            return "2. Заменить заявку";
+            return "2. Заменить заявку.";
         }
     }
 
@@ -154,7 +160,7 @@ public class MenuTracker {
 
         @Override
         public String info() {
-            return "3. Удалить заявку";
+            return "3. Удалить заявку.";
         }
     }
 
@@ -179,7 +185,7 @@ public class MenuTracker {
 
         @Override
         public String info() {
-            return "4. Найти заявку по Id";
+            return "4. Найти заявку по Id.";
         }
     }
 
@@ -202,7 +208,7 @@ public class MenuTracker {
 
         @Override
         public String info() {
-            return "5. Найти заявку по имени";
+            return "5. Найти заявку по имени.";
         }
     }
 
@@ -226,7 +232,7 @@ public class MenuTracker {
 
         @Override
         public String info() {
-            return "6. Завершение работы программы.";
+            return "6. Завершить работу программы.";
         }
     }
 }
