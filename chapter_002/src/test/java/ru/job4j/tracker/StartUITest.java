@@ -41,7 +41,7 @@ public class StartUITest {
     @Test
     public void whenUserAddItemThenTrackerHasNewItemWithSameName() {
         Input input = new StubInput(new String[]{"0", "test name", "desc", "6"});
-        new StartUI(input, tracker).init();
+        new StartUI(new ValidateInput(input), tracker).init();
         assertThat(tracker.findAll()[0].getName(), is("test name"));
     }
 
@@ -120,8 +120,7 @@ public class StartUITest {
                 .append(System.lineSeparator())
                 .append("5. Найти заявку по имени.")
                 .append(System.lineSeparator())
-                .append("6. Завершить работу программы.")
-                .append(System.lineSeparator());
+                .append("6. Завершить работу программы.");
 
 
 
@@ -142,6 +141,8 @@ public class StartUITest {
                         .append(System.lineSeparator())
                         .append(System.lineSeparator())
                         .append(menu)
+                        .append(System.lineSeparator())
+                        .append("------------ Завершение работы программы --------------")
                         .append(System.lineSeparator())
                         .toString()
 
