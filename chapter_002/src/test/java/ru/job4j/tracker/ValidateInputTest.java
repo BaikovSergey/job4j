@@ -39,7 +39,7 @@ public class ValidateInputTest {
      * Test input.
      */
     @Test
-    public void whenInvalidInput() {
+    public void whenInvalidCharacterInput() {
         ValidateInput input = new ValidateInput(
                 new StubInput(new String[] {"invalid", "1"})
         );
@@ -48,6 +48,23 @@ public class ValidateInputTest {
                 this.mem.toString(),
                 is(
                         String.format("Пожалуйста введите корректные данные.%n")
+                )
+        );
+    }
+
+    /**
+     * Test input.
+     */
+    @Test
+    public void whenInvalidNumberInput() {
+        ValidateInput input = new ValidateInput(
+                new StubInput(new String[] {"77", "1"})
+        );
+        input.ask("Выберите пункт меню: ", new int[] {1});
+        assertThat(
+                this.mem.toString(),
+                is(
+                        String.format("Пожалуйста выберите номер пункта из меню.%n")
                 )
         );
     }
