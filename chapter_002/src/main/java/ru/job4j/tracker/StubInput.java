@@ -10,7 +10,17 @@ public class StubInput implements Input {
         return answers[position++];
     }
     public int ask(String question, int[] range) {
-        //throw new UnsupportedOperationException("Неподдерживаемые операции");
-        return -1;
+        int key = Integer.valueOf(this.ask(question));
+        boolean exist = false;
+        for (int value : range) {
+            if (value == key) {
+                exist = true;
+                break;
+            }
+        }
+        if (!exist) {
+            throw new MenuOutException("Вы вышли за диапазон значений");
+        }
+        return key;
     }
 }
