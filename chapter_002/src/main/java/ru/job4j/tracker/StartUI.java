@@ -46,6 +46,9 @@ public class StartUI {
      */
     private boolean exit = false;
 
+    /**
+     * метод для выхода из цикла.
+     */
     public void exit() {
         this.exit = true;
     }
