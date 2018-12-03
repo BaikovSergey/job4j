@@ -127,7 +127,6 @@ public class StartUI {
         } else {
             System.out.println("------------ Ошибка. Заявка с Id: " + id + " не найдена -----------");
         }
-
     }
 
     /**
@@ -141,7 +140,6 @@ public class StartUI {
         } else {
             System.out.println("------------ Ошибка. Заявка с Id: " + id + " не найдена -----------");
         }
-
     }
 
     /**

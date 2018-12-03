@@ -108,19 +108,19 @@ public class StartUITest {
         StringBuilder menu = new StringBuilder()
                 .append("Меню.")
                 .append(System.lineSeparator())
-                .append("0. Добавить новую заявку.")
+                .append("0 : Добавить новую заявку.")
                 .append(System.lineSeparator())
-                .append("1. Показать все заявки.")
+                .append("1 : Показать все заявки.")
                 .append(System.lineSeparator())
-                .append("2. Заменить заявку.")
+                .append("2 : Заменить заявку.")
                 .append(System.lineSeparator())
-                .append("3. Удалить заявку.")
+                .append("3 : Удалить заявку.")
                 .append(System.lineSeparator())
-                .append("4. Найти заявку по Id.")
+                .append("4 : Найти заявку по Id.")
                 .append(System.lineSeparator())
-                .append("5. Найти заявку по имени.")
+                .append("5 : Найти заявку по имени.")
                 .append(System.lineSeparator())
-                .append("6. Завершить работу программы.");
+                .append("6 : Завершить работу программы.");
 
 
 

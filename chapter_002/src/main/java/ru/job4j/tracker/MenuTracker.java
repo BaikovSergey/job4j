@@ -49,7 +49,7 @@ public class MenuTracker {
         this.actions[3] = new MenuTracker.DeleteItem(3, "Удалить заявку.");
         this.actions[4] = new FindItemById(4, "Найти заявку по Id.");
         this.actions[5] = new FindItemsByName(5, "Найти заявку по имени.");
-        this.actions[6] = new ExitProgram(6, "Завершить работу программы.");
+        this.actions[6] = new ExitProgram(6, "Завершить работу программы.", ui);
     }
 
     public void addAction(UserAction action) {
@@ -191,16 +191,17 @@ public class MenuTracker {
     }
 
     public class ExitProgram extends BaseAction {
+        private StartUI startUI;
 
-        public ExitProgram(int key, String name) {
+        public ExitProgram(int key, String name, StartUI startUI) {
             super(key, name);
+            this.startUI = startUI;
         }
 
         @Override
         public void execute(Input input, Tracker tracker) {
-            StartUI ui = new StartUI(input, tracker);
             System.out.println("------------ Завершение работы программы --------------");
-            ui.exit();
+            startUI.exit();
         }
     }
 }
