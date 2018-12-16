@@ -101,7 +101,7 @@ public class MenuTracker {
         }
 
             @Override
-            public void execute (Input input, Tracker tracker){
+            public void execute(Input input, Tracker tracker) {
                 System.out.println("------------ Вывод всех заявок --------------");
                 Item[] founds = tracker.findAll();
                 for (int i = 0; i < founds.length; i++) {

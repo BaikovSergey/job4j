@@ -37,4 +37,5 @@ public class ArrayDuplicateTest {
         String[] expect = new String[] {"1", "1", "1"};
         assertThat(result, arrayContainingInAnyOrder(expect));
     }
+
 }

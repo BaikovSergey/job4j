@@ -24,7 +24,7 @@ public class ConvertList2Array {
                     array[i][j] = list.get(listIndex);
                     listIndex++;
                     length--;
-                    if (length == 0){
+                    if (length == 0) {
                         break;
                     }
                 }
