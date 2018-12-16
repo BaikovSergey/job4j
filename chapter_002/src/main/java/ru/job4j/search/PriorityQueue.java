@@ -25,8 +25,27 @@ public class PriorityQueue {
         }
     }
 
-    public Task take() {
+    /**
+     * Метод для получения первого элемента в списке.
+     * @return первый элемент.
+     */
+    public Task takeFirst() {
         return this.tasks.get(0);
     }
 
+    /**
+     * Метод для получения второго элемента в списке.
+     * @return второй элемент.
+     */
+    public Task takeMid() {
+        return this.tasks.get(1);
+    }
+
+    /**
+     * Метод для получения третьего элемента в списке.
+     * @return третий элемент.
+     */
+    public Task takeLast() {
+        return this.tasks.get(2);
+    }
 }
