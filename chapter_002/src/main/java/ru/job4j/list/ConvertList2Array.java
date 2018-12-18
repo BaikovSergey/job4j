@@ -1,5 +1,6 @@
 package ru.job4j.list;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -30,5 +31,20 @@ public class ConvertList2Array {
                 }
             }
         return array;
+    }
+
+    /**
+     * Метод объединяет массивы целых чисел в один общий массив типа Integer
+     * @param list литс из массивов
+     * @return общий массив
+     */
+    public List<Integer> convert (List<int[]> list) {
+        List<Integer> result = new ArrayList<>();
+        for (int[] aList : list) {
+            for (int anAList : aList) {
+                result.add(anAList);
+            }
+        }
+       return result;
     }
 }
