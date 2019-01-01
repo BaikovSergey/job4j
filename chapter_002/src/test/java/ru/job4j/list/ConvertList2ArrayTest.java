@@ -51,6 +51,6 @@ public class ConvertList2ArrayTest {
         expect.add(4);
         expect.add(5);
         expect.add(6);
-        assertThat(result, is (expect));
+        assertThat(result, is(expect));
     }
 }

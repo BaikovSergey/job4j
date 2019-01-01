@@ -38,7 +38,7 @@ public class ConvertList2Array {
      * @param list литс из массивов
      * @return общий массив
      */
-    public List<Integer> convert (List<int[]> list) {
+    public List<Integer> convert(List<int[]> list) {
         List<Integer> result = new ArrayList<>();
         for (int[] array : list) {
             for (int element : array) {

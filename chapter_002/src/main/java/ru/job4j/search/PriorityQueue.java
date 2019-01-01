@@ -1,6 +1,7 @@
 package ru.job4j.search;
 
 import java.util.LinkedList;
+import java.util.Arrays;
 
 public class PriorityQueue {
 
@@ -19,6 +20,7 @@ public class PriorityQueue {
                 i = index;
                 break;
             }
+            tasks.addLast(task);
         }
         tasks.add(i, task);
     }
