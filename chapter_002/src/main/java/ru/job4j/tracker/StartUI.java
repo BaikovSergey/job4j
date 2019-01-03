@@ -104,9 +104,9 @@ public class StartUI {
      */
     private void findAllItems() {
         System.out.println("------------ Вывод всех заявок --------------");
-        Item[] founds = tracker.findAll();
-        for (int i = 0; i < founds.length; i++) {
-            System.out.println(founds[i].toString());
+        ArrayList<Item> founds = tracker.findAll();
+        for (int i = 0; i < founds.size(); i++) {
+            System.out.println(founds.get(i).toString());
             System.out.println(System.lineSeparator());
         }
     }
@@ -162,11 +162,11 @@ public class StartUI {
      */
     private void findItemByName() {
         System.out.println("------------ Поиск заявки по имени --------------");
-        String name = this.input.ask("Введите имя заявки :");
+        String name = input.ask("Введите имя заявки :");
         System.out.println("------------ Заявки с именем: " + name + " -----------");
-        for (int i = 0; i < tracker.findByName(name).length; i++) {
-            System.out.println("Id заявки: " + tracker.findByName(name)[i].getId());
-            System.out.println("Описание заявки: " + tracker.findByName(name)[i].getDesc());
+        for (int i = 0; i < tracker.findByName(name).size(); i++) {
+            System.out.println("Id заявки: " + tracker.findByName(name).get(i));
+            System.out.println("Описание заявки: " + tracker.findByName(name).get(i));
         }
     }
 

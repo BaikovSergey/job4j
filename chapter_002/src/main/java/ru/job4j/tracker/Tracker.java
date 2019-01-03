@@ -88,12 +88,12 @@ public class Tracker {
      * Элементы, у которых совпадает name, копирует в результирующий список и возвращает его.
      * @return список элементов.
      */
-    public List findByName(String key) {
-        List<Item> finds = new ArrayList<>();
+    public ArrayList findByName(String key) {
+        ArrayList<Item> finds = new ArrayList<>();
         for (int i = 0; i < items.size(); i++) {
             Item name = this.items.get(i);
             if (name != null && name.getName().equals(key)) {
-                finds.add(this.items.get(i));
+                finds.add(name);
             }
         }
         return finds;

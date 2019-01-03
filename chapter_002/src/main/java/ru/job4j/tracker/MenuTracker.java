@@ -164,10 +164,10 @@ public class MenuTracker {
         public void execute(Input input, Tracker tracker) {
             System.out.println("------------ Поиск заявки по Id --------------");
             String id = input.ask("Введите Id заявки :");
-            Item founds = tracker.findById(id);
-            if (founds != null && founds.getId().equals(id)) {
+            Item finds = tracker.findById(id);
+            if (finds != null && finds.getId().equals(id)) {
                 System.out.println("------------ Заявка с Id: " + id + " -----------");
-                System.out.println(founds.toString());
+                System.out.println(finds.toString());
             } else {
                 System.out.println("------------ Ошибка. Заявка с Id: " + id + " не найдена -----------");
             }
@@ -185,9 +185,9 @@ public class MenuTracker {
             System.out.println("------------ Поиск заявки по имени --------------");
             String name = input.ask("Введите имя заявки :");
             System.out.println("------------ Заявки с именем: " + name + " -----------");
-            for (int i = 0; i < tracker.findByName(name).length; i++) {
-                System.out.println("Id заявки: " + tracker.findByName(name)[i].getId());
-                System.out.println("Описание заявки: " + tracker.findByName(name)[i].getDesc());
+            for (int i = 0; i < tracker.findByName(name).size(); i++) {
+                System.out.println("Id заявки: " + tracker.findByName(name).get(i));
+                System.out.println("Описание заявки: " + tracker.findByName(name).get(i));
             }
         }
     }
