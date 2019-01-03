@@ -1,22 +1,23 @@
 package ru.job4j.tracker;
 
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
- * @version $Id$
+ * @version $2$
  * @since 12.11.18
  */
 public class Tracker {
 
     /**
-     * Массив для хранение заявок.
+     * Список для хранение заявок.
      */
-    private final Item[] items = new Item[100];
+    private final ArrayList<Item> items = new ArrayList<>();
 
     /**
      * Указатель ячейки для новой заявки.
      */
-    private int position = 0;
+    private int  position = 0;
 
     /**
      * Метод реализаущий добавление заявки в хранилище
@@ -24,7 +25,7 @@ public class Tracker {
      */
     public Item add(Item item) {
         item.setId(this.generateId());
-        this.items[this.position++] = item;
+        this.items.add(item);
         return item;
     }
 
@@ -38,16 +39,16 @@ public class Tracker {
     }
 
     /**
-     * Метод заменяет ячейку в массиве this.items на новую заявку.
+     * Метод заменяет ячейку в списке this.items на новую заявку.
      * @param id id заявки, которую необходимо заменить.
      * @param item новая заявка.
      */
     public boolean replace(String id, Item item) {
         boolean result = false;
-        for (int i = 0; i < position; i++) {
-            Item itemId = this.items[i];
+        for (int i = 0; i < items.size(); i++) {
+            Item itemId = this.items.get(i);
             if (itemId != null && itemId.getId().equals(id)) {
-                this.items[i] = item;
+                this.items.add(i, item);
                 item.setId(id);
                 result = true;
                 break;
@@ -57,17 +58,15 @@ public class Tracker {
     }
 
     /**
-     * Метод удаляет ячейку в массиве this.items.
+     * Метод удаляет ячейку в списке this.items.
      * @param id id.
      */
     public boolean delete(String id) {
         boolean result = false;
-        for (int i = 0; i < position; i++) {
-            Item itemId = this.items[i];
+        for (int i = 0; i < items.size(); i++) {
+            Item itemId = this.items.get(i);
             if (itemId != null && itemId.getId().equals(id)) {
-                System.arraycopy(this.items, i + 1, this.items, i, this.items.length - (i + 1));
-                this.items[this.items.length - 1] = null;
-                position--;
+                items.remove(i);
                 result = true;
                 break;
             }
@@ -76,44 +75,42 @@ public class Tracker {
     }
 
     /**
-     * Метод возвращает копию массива this.items без null элементов.
-     * @return возвращает копию массива this.items без null элементов.
+     * Метод возвращает копию списка в виде массива this.items без null элементов.
+     * @return массив.
      */
-    public Item[] findAll() {
-        return Arrays.copyOf(this.items, position);
+    public ArrayList<Item> findAll() {
+        return this.items;
     }
 
     /**
-     * Метод проверяет в цикле все элементы массива this.items,
+     * Метод проверяет в цикле все элементы списка this.items,
      * сравнивая name (используя метод getName класса Item) с аргументом метода String key.
-     * Элементы, у которых совпадает name, копирует в результирующий массив и возвращает его.
-     * @return возвращает массив элементов.
+     * Элементы, у которых совпадает name, копирует в результирующий список и возвращает его.
+     * @return список элементов.
      */
-    public Item[] findByName(String key) {
-        int index = 0;
-        Item[] finds = new Item[position];
-        for (int i = 0; i < position; i++) {
-            Item name = this.items[i];
+    public List findByName(String key) {
+        List<Item> finds = new ArrayList<>();
+        for (int i = 0; i < items.size(); i++) {
+            Item name = this.items.get(i);
             if (name != null && name.getName().equals(key)) {
-                finds[index] = this.items[i];
-                index++;
+                finds.add(this.items.get(i));
             }
         }
-        return Arrays.copyOf(finds, index);
+        return finds;
     }
 
     /**
-     * Метод проверяет в цикле все элементы массива this.items,
+     * Метод проверяет в цикле все элементы списка this.items,
      * сравнивая id с аргументом String id и возвращает найденный Item.
      * Если Item не найден - возвращает null.
      * @return искомую заявку.
      */
     public Item findById(String id) {
         Item result = null;
-        for (int i = 0; i < position; i++) {
-           Item itemId = this.items[i];
+        for (int i = 0; i < items.size(); i++) {
+           Item itemId = this.items.get(i);
             if (itemId != null && itemId.getId().equals(id)) {
-                result = this.items[i];
+                result = this.items.get(i);
                 break;
             }
         }
