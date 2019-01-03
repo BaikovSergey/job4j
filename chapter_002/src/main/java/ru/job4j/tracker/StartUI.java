@@ -104,7 +104,7 @@ public class StartUI {
      */
     private void findAllItems() {
         System.out.println("------------ Вывод всех заявок --------------");
-        ArrayList<Item> founds = tracker.findAll();
+        List<Item> founds = tracker.findAll();
         for (int i = 0; i < founds.size(); i++) {
             System.out.println(founds.get(i).toString());
             System.out.println(System.lineSeparator());
