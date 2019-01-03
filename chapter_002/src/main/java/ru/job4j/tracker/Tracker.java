@@ -12,7 +12,7 @@ public class Tracker {
     /**
      * Список для хранение заявок.
      */
-    private final ArrayList<Item> items = new ArrayList<>();
+    private final List<Item> items = new ArrayList<>();
 
     /**
      * Указатель ячейки для новой заявки.
@@ -48,7 +48,7 @@ public class Tracker {
         for (int i = 0; i < items.size(); i++) {
             Item itemId = this.items.get(i);
             if (itemId != null && itemId.getId().equals(id)) {
-                this.items.add(i, item);
+                this.items.set(i, item);
                 item.setId(id);
                 result = true;
                 break;
@@ -78,7 +78,7 @@ public class Tracker {
      * Метод возвращает копию списка в виде массива this.items без null элементов.
      * @return массив.
      */
-    public ArrayList<Item> findAll() {
+    public List<Item> findAll() {
         return this.items;
     }
 
@@ -88,7 +88,7 @@ public class Tracker {
      * Элементы, у которых совпадает name, копирует в результирующий список и возвращает его.
      * @return список элементов.
      */
-    public ArrayList findByName(String key) {
+    public List<Item> findByName(String key) {
         ArrayList<Item> finds = new ArrayList<>();
         for (int i = 0; i < items.size(); i++) {
             Item name = this.items.get(i);

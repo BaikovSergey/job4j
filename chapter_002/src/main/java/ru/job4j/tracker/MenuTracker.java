@@ -1,6 +1,7 @@
 package ru.job4j.tracker;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class MenuTracker {
 
@@ -105,7 +106,7 @@ public class MenuTracker {
             @Override
             public void execute(Input input, Tracker tracker) {
                 System.out.println("------------ Вывод всех заявок --------------");
-                ArrayList<Item> founds = tracker.findAll();
+                List<Item> founds = tracker.findAll();
                 for (int i = 0; i < founds.size(); i++) {
                     System.out.println(founds.get(i).toString());
                     System.out.println(System.lineSeparator());
