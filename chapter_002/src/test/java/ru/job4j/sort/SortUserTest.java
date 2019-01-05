@@ -32,4 +32,25 @@ public class SortUserTest {
         expect.add(first);
         assertThat(result, is(expect));
     }
+
+    @Test
+    public void WhenListThenListSortedByNameLength() {
+        SortUser test = new SortUser();
+        User first = new User("Bob", 28);
+        User second = new User("Dmitriy", 25);
+        User third = new User("Vlad", 24);
+        User fourth = new User("Sergei", 25);
+        List<User> users = new ArrayList<>();
+        users.add(first);
+        users.add(second);
+        users.add(third);
+        users.add(fourth);
+        List<User> result = test.sortNameLength(users);
+        List<User> expect = new ArrayList<>();
+        users.add(first);
+        users.add(third);
+        users.add(fourth);
+        users.add(second);
+        assertThat(result, is(expect));
+    }
 }
