@@ -30,23 +30,7 @@ public class User implements Comparable<User> {
         this.age = age;
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        if (obj == null) {
-            return false;
-        }
-        if (!(obj instanceof User)) {
-            return false;
-        }
-        User user = (User) obj;
-        return age == user.age &&
-                Objects.equals(name, user.name);
-    }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(name, age);
-    }
 
     @Override
     public int compareTo(User user) {
