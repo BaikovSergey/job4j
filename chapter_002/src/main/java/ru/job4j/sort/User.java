@@ -1,9 +1,10 @@
 package ru.job4j.sort;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-
+/**
+ * @author Sergey Baikov
+ * @version $ 1 $
+ * @since 09.01.19
+ */
 public class User implements Comparable<User> {
 
     private String name;
@@ -39,9 +40,15 @@ public class User implements Comparable<User> {
 
     @Override
     public String toString() {
-        return "User{" +
-                "name='" + name + '\'' +
-                ", age=" + age +
+        return "User{"
+                +
+                "name='"
+                + name
+                + '\''
+                +
+                ", age="
+                + age
+                +
                 '}';
     }
 }
