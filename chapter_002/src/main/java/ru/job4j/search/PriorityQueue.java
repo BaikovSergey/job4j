@@ -20,7 +20,6 @@ public class PriorityQueue {
                 i = index;
                 break;
             }
-            tasks.addLast(task);
         }
         tasks.add(i, task);
     }
