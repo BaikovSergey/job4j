@@ -18,16 +18,17 @@ public class Bank {
     }
 
     public void addAccountToUser(String passport, Account account) {
-        this.bank.get(passport).add(account);
+        User user = getUserByPasport(passport);
+        this.bank.get(user).add(account);
     }
 
     public void deleteAccountFromUser(String passport, Account account) {
-        Object user = passport;
+        User user = getUserByPasport(passport);
         this.bank.get(user).remove(account);
     }
 
     public List<Account> getUserAccounts (String passport) {
-        Object user = passport;
+        User user = getUserByPasport(passport);
         return this.bank.get(user);
     }
 
@@ -48,5 +49,25 @@ public class Bank {
         return "Bank{" +
                 "bank=" + bank +
                 '}';
+    }
+
+    public User getUserByPasport(String passport) {
+        User user = null;
+        for (User userFromBank : bank.keySet()) {
+            if (userFromBank.getPassport().equals(passport)) {
+                user = userFromBank;
+            }
+        }
+        return user;
+    }
+
+    public User getUserByName(String name) {
+        User user = null;
+        for (User userFromBank : bank.keySet()) {
+            if (userFromBank.getName().equals(name)) {
+                user = userFromBank;
+            }
+        }
+        return user;
     }
 }
