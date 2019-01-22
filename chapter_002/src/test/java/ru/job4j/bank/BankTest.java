@@ -54,7 +54,7 @@ public class BankTest {
         Account account = new Account(8000, "111222333");
         test.addUser(user);
         test.addAccountToUser(user.getPassport(), account);
-        assertThat(test.getUserAccounts(user.getPassport()).get(0).getRequisites(), is(account.getRequisites()));
+        assertThat(test.getUserAccounts(user.getPassport()).get(0).getRequisites(), is("User is null"));
     }
 
     /**

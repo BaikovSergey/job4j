@@ -10,28 +10,47 @@ public class Bank {
     private Map<User, List<Account>> bank = new TreeMap<>();
 
     public void addUser(User user) {
-        this.bank.put(user, new ArrayList<>());
+        try {
+            this.bank.put(user, new ArrayList<>());
+        } catch (NullPointerException e) {
+            System.out.println("User is null");
+        }
     }
 
+
     public void deleteUser(User user) {
-        this.bank.remove(user);
+        try {
+            this.bank.remove(user);
+        } catch (NullPointerException e) {
+            System.out.println("User not found");
+        }
     }
 
     public void addAccountToUser(String passport, Account account) {
         User user = getUserByPassport(passport);
         if (user != null && account != null) {
-            this.bank.get(user).add(account);
+           try {
+               this.bank.get(user).add(account);
+           } catch (NullPointerException e) {
+               System.out.println("User is null");
+           }
         }
     }
 
     public void deleteAccountFromUser(String passport, Account account) {
         User user = getUserByPassport(passport);
-        this.bank.get(user).remove(account);
+        if (user != null && account != null) {
+            this.bank.get(user).remove(account);
+        }
     }
 
     public List<Account> getUserAccounts(String passport) {
+        List<Account> accounts = null;
         User user = getUserByPassport(passport);
-        return this.bank.get(user);
+        if (user != null) {
+            accounts = this.bank.get(user);
+        }
+        return accounts;
     }
 
     public boolean transferMoney(String srcPassport, String srcRequisite, String destPassport, String dstRequisite, double amount) {
