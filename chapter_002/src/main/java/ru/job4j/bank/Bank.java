@@ -18,24 +18,32 @@ public class Bank {
     }
 
     public void addAccountToUser(String passport, Account account) {
-        User user = getUserByPasport(passport);
-        this.bank.get(user).add(account);
+        User user = getUserByPassport(passport);
+        if (user != null && account != null) {
+            this.bank.get(user).add(account);
+        }
     }
 
     public void deleteAccountFromUser(String passport, Account account) {
-        User user = getUserByPasport(passport);
+        User user = getUserByPassport(passport);
         this.bank.get(user).remove(account);
     }
 
-    public List<Account> getUserAccounts (String passport) {
-        User user = getUserByPasport(passport);
+    public List<Account> getUserAccounts(String passport) {
+        User user = getUserByPassport(passport);
         return this.bank.get(user);
     }
 
-    public boolean transferMoney (String srcPassport, String srcRequisite, String destPassport, String dstRequisite, double amount) {
+    public boolean transferMoney(String srcPassport, String srcRequisite, String destPassport, String dstRequisite, double amount) {
         boolean result = false;
-        if (this.bank.get(srcPassport) != null && this.bank.get(srcPassport).contains(getUserAccounts(srcPassport)) && this.bank.get(destPassport) != null && this.bank.get(srcPassport).contains(srcRequisite) ) {
-
+        Account srcAccount = getAccountByPassportAndRequisite(srcPassport, srcRequisite);
+        Account destAccount = getAccountByPassportAndRequisite(destPassport, dstRequisite);
+        if (this.bank.get(getUserByPassport(srcPassport)).contains(srcAccount)
+                && srcAccount != null
+                && this.bank.get(getUserByPassport(destPassport)).contains(destAccount)
+                && destAccount != null) {
+            srcAccount.transfer(destAccount, amount);
+            result = true;
         }
         return result;
     }
@@ -46,12 +54,13 @@ public class Bank {
 
     @Override
     public String toString() {
-        return "Bank{" +
-                "bank=" + bank +
-                '}';
+        return "Bank{"
+                + "bank="
+                + bank
+                + '}';
     }
 
-    public User getUserByPasport(String passport) {
+    public User getUserByPassport(String passport) {
         User user = null;
         for (User userFromBank : bank.keySet()) {
             if (userFromBank.getPassport().equals(passport)) {
@@ -61,13 +70,14 @@ public class Bank {
         return user;
     }
 
-    public User getUserByName(String name) {
-        User user = null;
-        for (User userFromBank : bank.keySet()) {
-            if (userFromBank.getName().equals(name)) {
-                user = userFromBank;
+    public Account getAccountByPassportAndRequisite(String passport, String requisite) {
+        Account account = null;
+        User user = getUserByPassport(passport);
+        for (Account userAccount : bank.get(user)) {
+            if (userAccount.getRequisites().equals(requisite)) {
+                account = userAccount;
             }
         }
-        return user;
+        return account;
     }
 }

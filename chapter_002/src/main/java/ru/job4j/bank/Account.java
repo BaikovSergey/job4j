@@ -18,6 +18,16 @@ public class Account {
         return requisites;
     }
 
+    boolean transfer(Account destination, double amount) {
+        boolean result = false;
+        if (amount > 0 && amount <= this.value && destination != null) {
+            this.value -= amount;
+            destination.value += amount;
+            result = true;
+        }
+        return result;
+    }
+
     @Override
     public String toString() {
         return "Account{"
