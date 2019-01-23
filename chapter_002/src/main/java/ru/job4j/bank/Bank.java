@@ -92,10 +92,7 @@ public class Bank {
         boolean result = false;
         Account srcAccount = getAccountByPassportAndRequisite(srcPassport, srcRequisite);
         Account destAccount = getAccountByPassportAndRequisite(destPassport, dstRequisite);
-        if (this.bank.get(getUserByPassport(srcPassport)).contains(srcAccount)
-                && srcAccount != null
-                && this.bank.get(getUserByPassport(destPassport)).contains(destAccount)
-                && destAccount != null) {
+        if (srcAccount != null && destAccount != null) {
             srcAccount.transfer(destAccount, amount);
             result = true;
         }
