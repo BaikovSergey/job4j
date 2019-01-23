@@ -2,11 +2,26 @@ package ru.job4j.bank;
 
 import java.util.Objects;
 
+/**
+ * @author Sergey Baikov
+ * @version $ 1 $
+ * @since 23.01.19
+ */
 public class User implements Comparable<User> {
 
+    /**
+     * Хранит имя пользователя.
+     */
     private  String name;
+
+    /**
+     * Хранит номер паспорта пользователя.
+     */
     private  String passport;
 
+    /**
+     * Конструктор
+     */
     public User(String name, String passport) {
         this.name = name;
         this.passport = passport;
