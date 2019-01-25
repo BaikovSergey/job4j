@@ -5,12 +5,23 @@ import org.junit.Before;
 import org.junit.Test;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.util.function.Consumer;
+
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
 public class StartUITest {
-    private final PrintStream stdout = System.out;
+
     private final ByteArrayOutputStream out = new ByteArrayOutputStream();
+    private final PrintStream stdout = new PrintStream(out);
+    private final Consumer<String> output = new Consumer<String>() {
+
+
+        @Override
+        public void accept(String s) {
+            stdout.println(s);
+        }
+    };
     private Tracker tracker;
     private Item first;
 
@@ -41,7 +52,7 @@ public class StartUITest {
     @Test
     public void whenUserAddItemThenTrackerHasNewItemWithSameName() {
         Input input = new StubInput(new String[]{"0", "test name", "desc", "6"});
-        new StartUI(new ValidateInput(input), tracker).init();
+        new StartUI(new ValidateInput(input), tracker, output).init();
         assertThat(tracker.findAll().get(0).getName(), is("test name"));
     }
 
@@ -52,7 +63,7 @@ public class StartUITest {
     public void whenTwoItemsInTrackerThenLengthIsTwo() {
         Item second = tracker.add(new Item("test name2", "desc2"));
         Input input = new StubInput(new String[]{"1", "6"});
-        new StartUI(input, tracker).init();
+        new StartUI(input, tracker, output).init();
         assertThat(tracker.findAll().size(), is(2));
     }
 
@@ -62,7 +73,7 @@ public class StartUITest {
     @Test
     public void whenUserReplaceItemThenTrackerHasThatItem() {
         Input input = new StubInput(new String[]{"2", first.getId(), "test name two", "change", "6"});
-        new StartUI(input, tracker).init();
+        new StartUI(input, tracker, output).init();
         assertThat(tracker.findAll().get(0).getName(), is("test name two"));
     }
 
@@ -73,7 +84,7 @@ public class StartUITest {
     public void whenDeleteItemThenOnlyOneItemLeft() {
         Item second = tracker.add(new Item("test name2", "desc2"));
         Input input = new StubInput(new String[]{"3", first.getId(), "6"});
-        new StartUI(input, tracker).init();
+        new StartUI(input, tracker, output).init();
         assertThat(tracker.findAll().get(0), is(second));
     }
 
@@ -83,7 +94,7 @@ public class StartUITest {
     @Test
     public void whenFindByIdThenReturnItemWithThatId() {
         Input input = new StubInput(new String[]{"4", first.getId(), "6"});
-        new StartUI(input, tracker).init();
+        new StartUI(input, tracker, output).init();
         assertThat(tracker.findAll().get(0).getName(), is("test name"));
     }
 
@@ -93,7 +104,7 @@ public class StartUITest {
     @Test
     public void whenFindByNameThenReturnItemWithThatName() {
         Input input = new StubInput(new String[]{"5", first.getName(), "6"});
-        new StartUI(input, tracker).init();
+        new StartUI(input, tracker, output).init();
         assertThat(tracker.findAll().get(0).getName(), is("test name"));
     }
 
@@ -104,7 +115,7 @@ public class StartUITest {
     public void whenShowMenuThenPrintMenu() {
         String id = tracker.findAll().get(0).getId();
         Input input = new StubInput(new String[]{"1", "6"});
-        new StartUI(input, tracker).init();
+        new StartUI(input, tracker, output).init();
         StringBuilder menu = new StringBuilder()
                 .append("Меню.")
                 .append(System.lineSeparator())

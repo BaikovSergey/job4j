@@ -4,6 +4,7 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.Consumer;
 
 /**
  * @version $Id$
@@ -40,6 +41,7 @@ public class StartUI {
      */
     private static final String FINDBYNAME = "5";
 
+    private final Consumer<String> output;
 
     /**
      * Константа для выхода из цикла.
@@ -69,16 +71,18 @@ public class StartUI {
      * @param input   ввод данных.
      * @param tracker хранилище заявок.
      */
-    public StartUI(Input input, Tracker tracker) {
+    public StartUI(Input input, Tracker tracker, Consumer<String> output) {
         this.input = input;
         this.tracker = tracker;
+        this.output = output;
+
     }
 
     /**
      * Основой цикл программы.
      */
     public void init() {
-        MenuTracker menu = new MenuTracker(this.input, this.tracker);
+        MenuTracker menu = new MenuTracker(this.input, this.tracker, this.output);
         int[] range = new int[]{0, 1, 2, 3, 4, 5, 6};
         menu.fillActions(this);
         do {
@@ -91,22 +95,22 @@ public class StartUI {
      * Метод реализует добавленяи новый заявки в хранилище.
      */
     private void createItem() {
-        System.out.println("------------ Добавление новой заявки --------------");
+        output.accept("------------ Добавление новой заявки --------------");
         String name = this.input.ask("Введите имя заявки :");
         String desc = this.input.ask("Введите описание заявки :");
         Item item = new Item(name, desc);
         this.tracker.add(item);
-        System.out.println("------------ Новая заявка с Id : " + item.getId() + "-----------");
+        output.accept("------------ Новая заявка с Id : " + item.getId() + "-----------");
     }
 
     /**
      * Метод реализует вывод всех заявок.
      */
     private void findAllItems() {
-        System.out.println("------------ Вывод всех заявок --------------");
+        output.accept("------------ Вывод всех заявок --------------");
         List<Item> founds = tracker.findAll();
-        for (int i = 0; i < founds.size(); i++) {
-            System.out.println(founds.get(i).toString());
+        for (Item found : founds) {
+            System.out.println(found.toString());
             System.out.println(System.lineSeparator());
         }
     }
@@ -115,17 +119,17 @@ public class StartUI {
      * Метод реализует замену заявки.
      */
     private void replaceItem() {
-        System.out.println("------------ Замена заявки --------------");
+        output.accept("------------ Замена заявки --------------");
         String id = this.input.ask("Введите Id заявки, котрую хотите заменить: ");
         String name = this.input.ask("Введите имя новой заявки: ");
         String desc = this.input.ask("Введите описание заявки :");
         Item item = new Item(name, desc);
         if (tracker.replace(id, item)) {
-            System.out.println("------------ Заявка успешно заменена -----------");
-            System.out.println("Имя заявки: " + name);
-            System.out.println("Id заявки: " + id);
+            output.accept("------------ Заявка успешно заменена -----------");
+            output.accept("Имя заявки: " + name);
+            output.accept("Id заявки: " + id);
         } else {
-            System.out.println("------------ Ошибка. Заявка с Id: " + id + " не найдена -----------");
+            output.accept("------------ Ошибка. Заявка с Id: " + id + " не найдена -----------");
         }
     }
 
@@ -133,12 +137,12 @@ public class StartUI {
      * Метод реализует добавленяи новый заявки в хранилище.
      */
     private void deleteItem() {
-        System.out.println("------------ Удаление заявки --------------");
+        output.accept("------------ Удаление заявки --------------");
         String id = this.input.ask("Введите Id заявки :");
         if (tracker.delete(id)) {
-            System.out.println("------------ Заявка с Id: " + id + " удалена -----------");
+            output.accept("------------ Заявка с Id: " + id + " удалена -----------");
         } else {
-            System.out.println("------------ Ошибка. Заявка с Id: " + id + " не найдена -----------");
+            output.accept("------------ Ошибка. Заявка с Id: " + id + " не найдена -----------");
         }
     }
 
@@ -146,14 +150,14 @@ public class StartUI {
      * Метод реализует поиск заявки по Id.
      */
     private void findItemById() {
-        System.out.println("------------ Поиск заявки по Id --------------");
+        output.accept("------------ Поиск заявки по Id --------------");
         String id = this.input.ask("Введите Id заявки :");
         Item founds = tracker.findById(id);
         if (founds != null && founds.getId().equals(id)) {
-            System.out.println("------------ Заявка с Id: " + id + " -----------");
-            System.out.println(founds.toString());
+            output.accept("------------ Заявка с Id: " + id + " -----------");
+            output.accept(founds.toString());
         } else {
-            System.out.println("------------ Ошибка. Заявка с Id: " + id + " не найдена -----------");
+            output.accept("------------ Ошибка. Заявка с Id: " + id + " не найдена -----------");
         }
     }
 
@@ -161,12 +165,12 @@ public class StartUI {
      * Метод реализует поиск заявки по Name.
      */
     private void findItemByName() {
-        System.out.println("------------ Поиск заявки по имени --------------");
+        output.accept("------------ Поиск заявки по имени --------------");
         String name = input.ask("Введите имя заявки :");
         System.out.println("------------ Заявки с именем: " + name + " -----------");
         for (int i = 0; i < tracker.findByName(name).size(); i++) {
-            System.out.println("Id заявки: " + tracker.findByName(name).get(i));
-            System.out.println("Описание заявки: " + tracker.findByName(name).get(i));
+            output.accept("Id заявки: " + tracker.findByName(name).get(i));
+            output.accept("Описание заявки: " + tracker.findByName(name).get(i));
         }
     }
 
@@ -204,7 +208,12 @@ public class StartUI {
                 new ValidateInput(
                         new ConsoleInput()
                 ),
-                new Tracker()
+                new Tracker(), new Consumer<String>() {
+            @Override
+            public void accept(String s) {
+
+            }
+        }
         ).init();
     }
 }
