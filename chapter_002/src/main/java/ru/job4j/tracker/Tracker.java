@@ -2,6 +2,7 @@ package ru.job4j.tracker;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * @version $2$
@@ -45,14 +46,18 @@ public class Tracker {
      */
     public boolean replace(String id, Item item) {
         boolean result = false;
-        for (int i = 0; i < items.size(); i++) {
-            Item itemId = this.items.get(i);
-            if (itemId != null && itemId.getId().equals(id)) {
-                this.items.set(i, item);
-                item.setId(id);
-                result = true;
-                break;
-            }
+        Item find = items
+                .stream()
+                .filter(Objects::nonNull)
+                .filter(s -> s.getId().equals(id))
+                .findAny()
+                .orElse(null);
+        if (find != null) {
+            String itemId = find.getId();
+            item.setId(itemId);
+            this.items.remove(find);
+            this.items.add(item);
+            result = true;
         }
         return result;
     }
@@ -63,13 +68,15 @@ public class Tracker {
      */
     public boolean delete(String id) {
         boolean result = false;
-        for (int i = 0; i < items.size(); i++) {
-            Item itemId = this.items.get(i);
-            if (itemId != null && itemId.getId().equals(id)) {
-                items.remove(i);
-                result = true;
-                break;
-            }
+        Item find = items
+                .stream()
+                .filter(Objects::nonNull)
+                .filter(s -> s.getId().equals(id))
+                .findAny()
+                .orElse(null);
+        if (find != null) {
+            this.items.remove(find);
+            result = true;
         }
         return result;
     }
@@ -90,12 +97,11 @@ public class Tracker {
      */
     public List<Item> findByName(String key) {
         ArrayList<Item> finds = new ArrayList<>();
-        for (int i = 0; i < items.size(); i++) {
-            Item name = this.items.get(i);
-            if (name != null && name.getName().equals(key)) {
-                finds.add(name);
-            }
-        }
+        items
+                .stream()
+                .filter(Objects::nonNull)
+                .filter(s -> s.getName().equals(key))
+                .forEach(finds :: add);
         return finds;
     }
 
@@ -106,14 +112,11 @@ public class Tracker {
      * @return искомую заявку.
      */
     public Item findById(String id) {
-        Item result = null;
-        for (int i = 0; i < items.size(); i++) {
-           Item itemId = this.items.get(i);
-            if (itemId != null && itemId.getId().equals(id)) {
-                result = this.items.get(i);
-                break;
-            }
-        }
-        return result;
+        return items
+                .stream()
+                .filter(Objects::nonNull)
+                .filter(s -> s.getId().equals(id))
+                .findAny()
+                .orElse(null);
     }
 }

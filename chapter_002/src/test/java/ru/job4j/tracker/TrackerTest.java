@@ -32,6 +32,18 @@ public class TrackerTest {
     }
 
     /**
+     * Test replace null.
+     */
+    @Test
+    public void whenReplaceNullThenReturnPreviousName() {
+        Tracker tracker = new Tracker();
+        Item previous = new Item("test1", "testDescription");
+        tracker.add(previous);
+        Item test = new Item("add", "testAdd");
+        tracker.replace("123", test);
+        assertThat(tracker.findAll().get(0).getName(), is("test1"));
+    }
+    /**
      * Test delete.
      */
     @Test
