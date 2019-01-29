@@ -41,7 +41,7 @@ public class DiapasonTest {
     @Test
     public void whenLogarithmFunctionThenLogarithmResults() {
         Diapason function = new Diapason();
-        List<Double> result = function.diapason(1, 3, x -> Math.log(x) / Math.log(2)+ 1);
+        List<Double> result = function.diapason(1, 3, x -> Math.log(x) / Math.log(2) + 1);
         List<Double> expected = Arrays.asList(1D, 2D);
         assertThat(result, is(expected));
     }
