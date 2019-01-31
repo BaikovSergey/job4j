@@ -55,8 +55,7 @@ public class Tracker {
         if (find != null) {
             String itemId = find.getId();
             item.setId(itemId);
-            this.items.remove(find);
-            this.items.add(item);
+            this.items.set(this.items.indexOf(find), item);
             result = true;
         }
         return result;
@@ -75,7 +74,7 @@ public class Tracker {
                 .findAny()
                 .orElse(null);
         if (find != null) {
-            this.items.remove(find);
+            this.items.remove(this.items.indexOf(find));
             result = true;
         }
         return result;
