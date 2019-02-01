@@ -74,7 +74,7 @@ public class Tracker {
                 .findAny()
                 .orElse(null);
         if (find != null) {
-            this.items.remove(this.items.indexOf(find));
+            this.items.remove(find);
             result = true;
         }
         return result;

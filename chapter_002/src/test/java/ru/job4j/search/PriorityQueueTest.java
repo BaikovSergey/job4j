@@ -21,6 +21,7 @@ public class PriorityQueueTest {
         queue.put(new Task("urgent", 1));
         queue.put(new Task("middle", 3));
         queue.put(new Task("last", 8));
+        System.out.println(queue.toString());
         Task result = queue.take();
         assertThat(result.getDesc(), is("urgent"));
         result = queue.take();
@@ -29,5 +30,6 @@ public class PriorityQueueTest {
         assertThat(result.getDesc(), is("low"));
         result = queue.take();
         assertThat(result.getDesc(), is("last"));
+
     }
 }

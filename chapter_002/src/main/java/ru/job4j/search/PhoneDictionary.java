@@ -1,6 +1,7 @@
 package ru.job4j.search;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * @author Sergey Baikov
@@ -8,7 +9,7 @@ import java.util.List;
  * @since 11.12.18
  */
 public class PhoneDictionary {
-    private List<Person> persons = new ArrayList<Person>();
+    private List<Person> persons = new ArrayList<>();
 
     public void add(Person person) {
         this.persons.add(person);
@@ -21,14 +22,14 @@ public class PhoneDictionary {
      */
     public List<Person> find(String key) {
         List<Person> result = new ArrayList<>();
-        for (int i = 0; i < persons.size(); i++) {
-            if (persons.get(i).getName().contains(key)
-                    || persons.get(i).getSurname().contains(key)
-                    || persons.get(i).getAddress().contains(key)
-                    || persons.get(i).getPhone().contains(key)) {
-                result.add(persons.get(i));
-            }
-        }
+                this.persons
+                .stream()
+                .filter(Objects::nonNull)
+                .filter(s -> s.getName().equals(key)
+                || s.getSurname().equals(key)
+                || s.getAddress().equals(key)
+                || s.getPhone().equals(key))
+                .forEach(result :: add);
         return result;
     }
 }

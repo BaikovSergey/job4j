@@ -1,6 +1,7 @@
 package ru.job4j.list;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -17,11 +18,16 @@ public class ConvertMatrix2List {
      */
     public List<Integer> toList(int[][] array) {
         List<Integer> list = new ArrayList<>();
-        for (int[] anArray : array) {
-            for (int i = 0; i < array.length; i++) {
-                list.add(anArray[i]);
-            }
-        }
+
         return list;
     }
+//    public List<Integer> toList(int[][] array) {
+//        List<Integer> list = new ArrayList<>();
+//        for (int[] anArray : array) {
+//            for (int i = 0; i < array.length; i++) {
+//                list.add(anArray[i]);
+//            }
+//        }
+//        return list;
+//    }
 }
