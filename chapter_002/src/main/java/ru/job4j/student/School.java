@@ -22,28 +22,4 @@ public class School {
                .filter(predicate)
                .collect(Collectors.toList());
    }
-
-    /**
-     * Фильтр для высокого балла.
-     * @return Predicate
-     */
-    public static Predicate<Student> highScore() {
-        return p -> p.getScore() >= 70;
-    }
-
-    /**
-     * Фильтр для среднего балла.
-     * @return Predicate
-     */
-    public static Predicate<Student> midScore() {
-        return p -> p.getScore() >= 50 && p.getScore() < 70;
-    }
-
-    /**
-     * Фильтр для низкого балла.
-     * @return Predicate
-     */
-    public static Predicate<Student> lowScore() {
-        return p -> p.getScore() < 50;
-    }
 }

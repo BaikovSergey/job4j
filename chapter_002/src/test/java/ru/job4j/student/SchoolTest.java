@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 
@@ -29,7 +30,7 @@ public class SchoolTest {
         Student student5 = new Student(49);
         Student student6 = new Student(35);
         List<Student> class9A = new ArrayList<>(Arrays.asList(student1, student2, student3, student4, student5, student6));
-        List<Student> result = school.collect(class9A, School.highScore());
+        List<Student> result = school.collect(class9A, student -> student.getScore() >= 70);
         List<Student> expect = new ArrayList<>(Collections.singletonList(student1));
         assertThat(result, is(expect));
     }
@@ -47,7 +48,7 @@ public class SchoolTest {
         Student student5 = new Student(49);
         Student student6 = new Student(35);
         List<Student> class9A = new ArrayList<>(Arrays.asList(student1, student2, student3, student4, student5, student6));
-        List<Student> result = school.collect(class9A, School.midScore());
+        List<Student> result = school.collect(class9A, student -> student.getScore() >= 50 && student.getScore() < 70);
         List<Student> expect = new ArrayList<>(Arrays.asList(student3, student4));
         assertThat(result, is(expect));
     }
@@ -65,7 +66,7 @@ public class SchoolTest {
         Student student5 = new Student(49);
         Student student6 = new Student(35);
         List<Student> class9A = new ArrayList<>(Arrays.asList(student1, student2, student3, student4, student5, student6));
-        List<Student> result = school.collect(class9A, School.lowScore());
+        List<Student> result = school.collect(class9A, student -> student.getScore() < 50);
         List<Student> expect = new ArrayList<>(Arrays.asList(student2, student5, student6));
         assertThat(result, is(expect));
     }
