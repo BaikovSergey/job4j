@@ -27,7 +27,7 @@ public class ProfileTest {
         Profile profile1 = new Profile(address1);
         Profile profile2 = new Profile(address2);
         Profile profile3 = new Profile(address3);
-        List<Profile> profiles = new ArrayList<>(Arrays.asList(profile1, profile2, profile3));
+        List<Profile> profiles = new ArrayList<>(Arrays.asList(profile2, profile3, profile1));
         Profile test = new Profile(null);
         List<Address> result = test.collect(profiles);
         List<Address> expect = new ArrayList<>(Arrays.asList(address1, address2));

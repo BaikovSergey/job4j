@@ -1,5 +1,6 @@
 package ru.job4j.address;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -27,6 +28,7 @@ public class Profile {
     public List<Address> collect(List<Profile> profiles) {
         return profiles.stream()
                 .map(profile -> profile.address)
+                .sorted(Comparator.comparing(Address::getCity))
                 .distinct()
                 .collect(Collectors.toList());
     }
