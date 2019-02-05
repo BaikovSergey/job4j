@@ -1,6 +1,7 @@
 package ru.job4j.student;
 
 import java.util.List;
+import java.util.Map;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
@@ -22,4 +23,14 @@ public class School {
                .filter(predicate)
                .collect(Collectors.toList());
    }
+
+    /**
+     * Метод преобразует сисок в таблицу.
+     * @param students Список студентов.
+     * @return Таблица студентов.
+     */
+    public Map<String, StudentToMap> collectMap(List<StudentToMap> students) {
+        return students.stream()
+                .collect(Collectors.toMap(StudentToMap::getSurname, s -> s));
+    }
 }
