@@ -1,11 +1,13 @@
 package ru.job4j.address;
 
+import java.util.Objects;
+
 /**
  * @author Sergey Baikov
  * @version $ 1 $
  * @since 05.02.19
  */
-public class Address {
+public class Address implements Comparable<Address> {
     /**
      * Хранит название горола.
      */
@@ -35,6 +37,27 @@ public class Address {
         this.street = street;
         this.home = home;
         this.apartment = apartment;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Address address = (Address) o;
+        return home == address.home &&
+                apartment == address.apartment &&
+                Objects.equals(city, address.city) &&
+                Objects.equals(street, address.street);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(city, street, home, apartment);
+    }
+
+    @Override
+    public int compareTo(Address o) {
+        return city.compareTo(o.getCity());
     }
 
     public String getCity() {
@@ -67,5 +90,15 @@ public class Address {
 
     public void setApartment(int apartment) {
         this.apartment = apartment;
+    }
+
+    @Override
+    public String toString() {
+        return "Address{" +
+                "city='" + city + '\'' +
+                ", street='" + street + '\'' +
+                ", home=" + home +
+                ", apartment=" + apartment +
+                '}';
     }
 }

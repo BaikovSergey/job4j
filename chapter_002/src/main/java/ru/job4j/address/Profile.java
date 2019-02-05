@@ -27,7 +27,15 @@ public class Profile {
     public List<Address> collect(List<Profile> profiles) {
         return profiles.stream()
                 .map(profile -> profile.address)
+                .distinct()
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public String toString() {
+        return "Profile{" +
+                "address=" + address +
+                '}';
     }
 }
 
