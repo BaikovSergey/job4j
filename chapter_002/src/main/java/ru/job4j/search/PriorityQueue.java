@@ -1,7 +1,6 @@
 package ru.job4j.search;
 
 import java.util.LinkedList;
-import java.util.Objects;
 
 public class PriorityQueue {
 
@@ -18,24 +17,17 @@ public class PriorityQueue {
         Task find;
         if (i != 0) {
             find = this.tasks.stream()
-                    .filter(s -> task.getPriority() <= s.getPriority())
+                    .filter(s ->  s.getPriority() >= task.getPriority())
                     .findAny()
-                    .orElse(task);
-            i = this.tasks.indexOf(find);
+                    .orElse(null);
+            if (find != null) {
+                i = this.tasks.indexOf(find);
+            } else {
+                i = tasks.size();
+            }
         }
-
         this.tasks.add(i, task);
     }
-//    public void put(Task task) {
-//        int i = tasks.size();
-//        for (int index = 0; index < tasks.size(); index++) {
-//            if (task.getPriority() <= tasks.get(index).getPriority()) {
-//                i = index;
-//                break;
-//            }
-//        }
-//        tasks.add(i, task);
-//    }
 
     /**
      * Метод для получения первого элемента в списке.
@@ -47,8 +39,9 @@ public class PriorityQueue {
 
     @Override
     public String toString() {
-        return "PriorityQueue{" +
-                "tasks=" + tasks +
-                '}';
+        return "PriorityQueue{"
+                + "tasks="
+                + tasks
+                + '}';
     }
 }
