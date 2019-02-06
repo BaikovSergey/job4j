@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
+
 /**
  * @author Sergey Baikov
  * @version $ 1 $
@@ -121,13 +122,12 @@ public class Bank {
      * @return искомый пользователь.
      */
     public User getUserByPassport(String passport) {
-        User user = null;
-        for (User userFromBank : bank.keySet()) {
-            if (userFromBank.getPassport().equals(passport)) {
-                user = userFromBank;
-            }
-        }
-        return user;
+        return this.bank.entrySet()
+                .stream()
+                .map(Map.Entry::getKey)
+                .filter(u -> u.getPassport().equals(passport))
+                .findFirst()
+                .orElse(null);
     }
 
     /**
@@ -137,13 +137,21 @@ public class Bank {
      * @return счет пользователя.
      */
     public Account getAccountByPassportAndRequisite(String passport, String requisite) {
-        Account account = null;
         User user = getUserByPassport(passport);
-        for (Account userAccount : bank.get(user)) {
-            if (userAccount.getRequisites().equals(requisite)) {
-                account = userAccount;
-            }
-        }
-        return account;
+        return this.bank.get(user)
+                .stream()
+                .filter(u -> u.getRequisites().equals(requisite))
+                .findAny()
+                .orElse(null);
     }
+//    public Account getAccountByPassportAndRequisite(String passport, String requisite) {
+//        Account account = null;
+//        User user = getUserByPassport(passport);
+//        for (Account userAccount : bank.get(user)) {
+//            if (userAccount.getRequisites().equals(requisite)) {
+//                account = userAccount;
+//            }
+//        }
+//        return account;
+//    }
 }
