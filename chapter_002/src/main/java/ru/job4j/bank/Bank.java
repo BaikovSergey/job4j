@@ -138,20 +138,16 @@ public class Bank {
      */
     public Account getAccountByPassportAndRequisite(String passport, String requisite) {
         User user = getUserByPassport(passport);
-        return this.bank.get(user)
-                .stream()
-                .filter(u -> u.getRequisites().equals(requisite))
-                .findAny()
-                .orElse(null);
+        Account account = null;
+        try {
+            account = this.bank.get(user)
+                    .stream()
+                    .filter(u -> u.getRequisites().equals(requisite))
+                    .findAny()
+                    .orElse(null);
+        } catch (NullPointerException e) {
+            System.out.println("Account not found");
+        }
+        return account;
     }
-//    public Account getAccountByPassportAndRequisite(String passport, String requisite) {
-//        Account account = null;
-//        User user = getUserByPassport(passport);
-//        for (Account userAccount : bank.get(user)) {
-//            if (userAccount.getRequisites().equals(requisite)) {
-//                account = userAccount;
-//            }
-//        }
-//        return account;
-//    }
 }
