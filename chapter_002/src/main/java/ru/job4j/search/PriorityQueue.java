@@ -13,20 +13,10 @@ public class PriorityQueue {
      * @param task задача
      */
     public void put(Task task) {
-        int i = tasks.size();
-        Task find;
-        if (i != 0) {
-            find = this.tasks.stream()
-                    .filter(s ->  s.getPriority() >= task.getPriority())
-                    .findAny()
-                    .orElse(null);
-            if (find != null) {
-                i = this.tasks.indexOf(find);
-            } else {
-                i = tasks.size();
-            }
-        }
-        this.tasks.add(i, task);
+        int index = (int) this.tasks.stream().filter(
+                t -> task.getPriority() > t.getPriority()
+        ).count();
+        this.tasks.add(index, task);
     }
 
     /**
