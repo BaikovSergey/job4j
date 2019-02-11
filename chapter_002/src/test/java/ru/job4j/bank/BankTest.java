@@ -87,14 +87,6 @@ public class BankTest {
     }
 
     /**
-     * Test transferMoney.
-     */
-    @Test
-    public void whenTransferMoneyThenTheyAreAddedToDestAccount() {
-
-    }
-
-    /**
      * Test getAccountByPassportAndRequisite
      */
     @Test
@@ -104,7 +96,7 @@ public class BankTest {
         Account expected = new Account(8000, "111222333");
         test.addUser(user);
         test.addAccountToUser(user.getPassport(), expected);
-        Account result = test.getAccountByPassportAndRequisite("123", expected.getRequisites());
+        Account result = test.getAccountByPassportAndRequisite(user.getPassport(), expected.getRequisites());
         assertThat(result, is(expected));
     }
 

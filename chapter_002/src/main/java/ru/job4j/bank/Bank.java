@@ -23,11 +23,7 @@ public class Bank {
      * @param user новый пользователь.
      */
     public void addUser(User user) {
-        try {
-            this.bank.put(user, new ArrayList<>());
-        } catch (NullPointerException e) {
-            System.out.println("User is null");
-        }
+        this.bank.putIfAbsent(user, new ArrayList<>());
     }
 
     /**
@@ -35,11 +31,7 @@ public class Bank {
      * @param user пользователь для удаления.
      */
     public void deleteUser(User user) {
-        try {
-            this.bank.remove(user);
-        } catch (NullPointerException e) {
-            System.out.println("User not found");
-        }
+        this.bank.remove(user);
     }
 
     /**
@@ -94,8 +86,7 @@ public class Bank {
         Account srcAccount = getAccountByPassportAndRequisite(srcPassport, srcRequisite);
         Account destAccount = getAccountByPassportAndRequisite(destPassport, dstRequisite);
         if (srcAccount != null && destAccount != null) {
-            srcAccount.transfer(destAccount, amount);
-            result = true;
+            result = srcAccount.transfer(destAccount, amount);
         }
         return result;
     }
