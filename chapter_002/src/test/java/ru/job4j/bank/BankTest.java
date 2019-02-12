@@ -45,19 +45,6 @@ public class BankTest {
     }
 
     /**
-     * Test addAccountToUser.
-     */
-    @Test
-    public void whenAddAccountToNullUserThenNewAccount() {
-        Bank test = new Bank();
-        User user = new User(null, null);
-        Account account = new Account(8000, "111222333");
-        test.addUser(user);
-        test.addAccountToUser(user.getPassport(), account);
-        assertThat(test.getUserAccounts(user.getPassport()).get(0).getRequisites(), is("User is null"));
-    }
-
-    /**
      * Test deleteAccountFromUser.
      */
     @Test

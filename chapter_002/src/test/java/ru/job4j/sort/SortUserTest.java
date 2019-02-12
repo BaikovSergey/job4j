@@ -68,17 +68,19 @@ public class SortUserTest {
         User second = new User("Dmitriy", 25);
         User third = new User("Bob", 24);
         User fourth = new User("Sergei", 25);
-        List<User> users = new ArrayList<>();
-        users.add(first);
-        users.add(second);
-        users.add(third);
-        users.add(fourth);
+        List<User> users = List.of(
+                first,
+                second,
+                third,
+                fourth);
+
         List<User> result = test.sortByAllFields(users);
-        List<User> expect = new ArrayList<>();
-        users.add(third);
-        users.add(first);
-        users.add(second);
-        users.add(fourth);
+        List<User> expect = List.of(
+                third,
+                first,
+                second,
+                fourth);
+        System.out.println(result);
         assertThat(result, is(expect));
     }
 }
