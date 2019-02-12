@@ -19,7 +19,7 @@ public class MatrixTest {
     @Test
     public void whenMatrixOfIntegerThenListOfInteger() {
         Matrix test = new Matrix();
-        Integer[][] matrix = {{1,2,3}, {4,5,6}};
+        Integer[][] matrix = {{1, 2, 3}, {4, 5, 6}};
         List<Integer> expect = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6));
         List<Integer> result = test.matrixToList(matrix);
         assertThat(result, is(expect));

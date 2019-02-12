@@ -27,17 +27,18 @@ public class SortUserTest {
         User second = new User("Dmitriy", 25);
         User third = new User("Vlad", 24);
         User fourth = new User("Sergei", 25);
-        List<User> users = new ArrayList<>();
-        users.add(first);
-        users.add(second);
-        users.add(third);
-        users.add(fourth);
+        List<User> users = List.of(
+                first,
+                second,
+                third,
+                fourth);
         Set<User> result = test.sort(users);
-        Set<User> expect = new TreeSet<>();
-        expect.add(third);
-        expect.add(second);
-        expect.add(fourth);
-        expect.add(first);
+        Set<User> expect = Set.of(
+                third,
+                second,
+                first);
+        System.out.println(users);
+        System.out.println(result);
         assertThat(result, is(expect));
     }
 
@@ -51,17 +52,9 @@ public class SortUserTest {
         User second = new User("Dmitriy", 25);
         User third = new User("Vlad", 24);
         User fourth = new User("Sergei", 25);
-        List<User> users = new ArrayList<>();
-        users.add(first);
-        users.add(second);
-        users.add(third);
-        users.add(fourth);
+        List<User> users = List.of(first, second, third, fourth);
         List<User> result = test.sortNameLength(users);
-        List<User> expect = new ArrayList<>();
-        users.add(first);
-        users.add(third);
-        users.add(fourth);
-        users.add(second);
+        List<User> expect = List.of(first, third, fourth, second);
         assertThat(result, is(expect));
     }
 
