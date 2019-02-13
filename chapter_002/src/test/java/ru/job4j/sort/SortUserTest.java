@@ -52,9 +52,17 @@ public class SortUserTest {
         User second = new User("Dmitriy", 25);
         User third = new User("Vlad", 24);
         User fourth = new User("Sergei", 25);
-        List<User> users = List.of(first, second, third, fourth);
+        List<User> users = List.of(
+                first,
+                second,
+                third,
+                fourth);
         List<User> result = test.sortNameLength(users);
-        List<User> expect = List.of(first, third, fourth, second);
+        List<User> expect = List.of(
+                first,
+                third,
+                fourth,
+                second);
         assertThat(result, is(expect));
     }
 
