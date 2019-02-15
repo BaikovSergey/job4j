@@ -16,7 +16,7 @@ public class PriorityQueue {
         var index = this.tasks.stream().filter(
                 t -> task.getPriority() > t.getPriority()
         ).count();
-        this.tasks.add((int)index, task);
+        this.tasks.add((int) index, task);
     }
 
     /**

@@ -19,7 +19,7 @@ public class TrackerEnumTest {
     public void thenCreateInstanceWhenOnlyOneInstance() {
         TrackerEnum first = TrackerEnum.TRACKER;
         TrackerEnum second = TrackerEnum.TRACKER;
-        assertThat(first, is (second));
+        assertThat(first, is(second));
     }
 
 }

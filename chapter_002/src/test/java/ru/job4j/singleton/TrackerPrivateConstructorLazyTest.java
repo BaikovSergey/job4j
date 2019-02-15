@@ -19,7 +19,7 @@ public class TrackerPrivateConstructorLazyTest {
     public void thenCreateInstanceWhenOnlyOneInstance() {
         TrackerPrivateConstructorLazy first = TrackerPrivateConstructorLazy.getInstance();
         TrackerPrivateConstructorLazy second = TrackerPrivateConstructorLazy.getInstance();
-        assertThat(first, is (second));
+        assertThat(first, is(second));
     }
 
 }

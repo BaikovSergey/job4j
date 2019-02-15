@@ -19,7 +19,7 @@ public class TrackerPrivateConstructorEagerTest {
     public void thenCreateInstanceWhenOnlyOneInstance() {
         TrackerPrivateConstructorEager first = TrackerPrivateConstructorEager.getInstance();
         TrackerPrivateConstructorEager second = TrackerPrivateConstructorEager.getInstance();
-        assertThat(first, is (second));
+        assertThat(first, is(second));
     }
 
 }

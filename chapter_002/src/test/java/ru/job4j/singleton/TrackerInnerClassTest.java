@@ -19,7 +19,7 @@ public class TrackerInnerClassTest {
     public void thenCreateInstanceWhenOnlyOneInstance() {
         TrackerInnerClass first = TrackerInnerClass.getInstance();
         TrackerInnerClass second = TrackerInnerClass.getInstance();
-        assertThat(first, is (second));
+        assertThat(first, is(second));
     }
 
 }
