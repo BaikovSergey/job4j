@@ -1,5 +1,7 @@
 package ru.job4j.coffeemachine;
 
+import java.util.Arrays;
+
 /**
  * @author Sergey Baikov
  * @version $ 1 $
@@ -17,49 +19,24 @@ public class CoffeeMachine {
     int minPrice = 35;
 
     /**
-     * Монета номеналом 10 рублей.
+     * Номиналы монет.
      */
-    static final int TEN = 10;
-    /**
-     * Монета номеналом 5 рублей.
-     */
-    static final int FIVE = 5;
-    /**
-     * Монета номеналом 2 рубля.
-     */
-    static final int TWO = 2;
-    /**
-     * Монета номеналом 1 рубль.
-     */
-    static final int ONE = 1;
+    private int[] denominations = {10, 5, 2, 1};
 
     /**
-     * В автомате есть монеты номиналом 10 рублей.
-     * @return да/нет
+     * Получение номиналов монет.
+     * @return список номиналов
      */
-    public boolean gotTens() {
-        return true;
+    public int[] getDenominations() {
+        return denominations;
     }
+
     /**
-     * В автомате есть монеты номиналом 5 рублей.
-     * @return да/нет
+     * Установка номиналов монет.
+     * @param denominations список номиналов
      */
-    public boolean gotFives() {
-        return true;
-    }
-    /**
-     * В автомате есть монеты номиналом 2 рубля.
-     * @return да/нет
-     */
-    public boolean gotTwos() {
-        return true;
-    }
-    /**
-     * В автомате есть монеты номиналом 1 рубль.
-     * @return да/нет
-     */
-    public boolean gotOnes() {
-        return true;
+    public void setDenominations(int[] denominations) {
+        this.denominations = denominations;
     }
 
     /**
@@ -70,27 +47,19 @@ public class CoffeeMachine {
      */
   public int[] changes(int value, int price) {
       int counter = 0;
+      int index = 0;
       int difference = value - price;
+      int[] denominations = getDenominations();
       int[] result = new int[maxValue - minPrice];
       while (difference > 0) {
-          if (gotTens() && difference >= TEN) {
-            difference -= TEN;
-            result[counter] = TEN;
-            counter++;
-          } else if (gotFives() && difference >= FIVE) {
-              difference -= FIVE;
-              result[counter] = FIVE;
-              counter++;
-          } else if (gotTwos() && difference >= TWO) {
-              difference -= TWO;
-              result[counter] = TWO;
-              counter++;
-          } else if (gotOnes()) {
-              difference -= ONE;
-              result[counter] = ONE;
-              counter++;
+          if (difference >= denominations[index]) {
+              difference -= denominations[index];
+              result[counter] = denominations[index];
+             counter++;
+          } else {
+              index++;
           }
       }
-      return result;
+      return Arrays.copyOf(result, counter);
     }
 }

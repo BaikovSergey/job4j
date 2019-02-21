@@ -21,9 +21,8 @@ public class CoffeeMachineTest {
     public void whenValueIs100AndPrice65Then1010105() {
         CoffeeMachine test = new CoffeeMachine();
         int[] result = test.changes(100, 65);
-        int[] resultCompact = Arrays.copyOf(result, 4);
         int[] expect = {10, 10, 10, 5};
-        assertThat(resultCompact, is(expect));
+        assertThat(result, is(expect));
     }
 
     /**
@@ -33,9 +32,8 @@ public class CoffeeMachineTest {
     public void whenValueIs100AndPrice82Then10521() {
         CoffeeMachine test = new CoffeeMachine();
         int[] result = test.changes(100, 82);
-        int[] resultCompact = Arrays.copyOf(result, 4);
         int[] expect = {10, 5, 2, 1};
-        assertThat(resultCompact, is(expect));
+        assertThat(result, is(expect));
     }
 
     /**
@@ -44,6 +42,9 @@ public class CoffeeMachineTest {
     @Test
     public void whenValueIs100AndPrice35AndOnlyOnesThen35Ones() {
         CoffeeMachine test = new CoffeeMachine();
+        int[] denominations = new int[100 - 35];
+        Arrays.fill(denominations, 1);
+        test.setDenominations(denominations);
         int[] result = test.changes(100, 35);
         int[] expect = new int[100 - 35];
         Arrays.fill(expect, 1);
