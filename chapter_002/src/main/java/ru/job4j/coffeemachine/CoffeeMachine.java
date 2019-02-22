@@ -50,7 +50,7 @@ public class CoffeeMachine {
       int index = 0;
       int difference = value - price;
       int[] denominations = getDenominations();
-      int[] result = new int[maxValue - minPrice];
+      int[] result = new int[maxValue - minPrice / getDenominations().length - 1];
       while (difference > 0) {
           if (difference >= denominations[index]) {
               difference -= denominations[index];
