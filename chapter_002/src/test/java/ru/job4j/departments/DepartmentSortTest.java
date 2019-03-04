@@ -57,7 +57,7 @@ public class DepartmentSortTest {
         list.add("K2/SK1/SSK2");
         list.add("K1/SK2");
         List<String> expect = Arrays.asList("K2", "K2/SK1", "K2/SK1/SSK2", "K2/SK1/SSK1", "K1", "K1/SK2", "K1/SK1", "K1/SK1/SSK2", "K1/SK1/SSK1");
-        Set<String> result = test.sortRevers(list);
+        List<String> result = new ArrayList<>(test.sortRevers(list));
         assertThat(result, is(expect));
     }
 }

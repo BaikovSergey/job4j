@@ -26,18 +26,15 @@ public class DepartmentSort {
      * @return сортированый список
      */
     public Set<String> sortRevers(Set<String> list) {
-        Comparator<String> revers = new Comparator<String>() {
-            @Override
-            public int compare(String s1, String s2) {
-                int flag = s2.charAt(1) - s1.charAt(1);
+        Comparator<String> revers = (s1, s2) -> {
+            int flag = s2.charAt(1) - s1.charAt(1);
+            if (flag == 0) {
+                flag = s1.length() - s2.length();
                 if (flag == 0) {
-                    flag = s1.length() - s2.length();
-                    if (flag == 0) {
-                        flag = s2.charAt(s2.length() - 1) - s1.charAt(s1.length() - 1);
-                    }
+                    flag = s2.charAt(s2.length() - 1) - s1.charAt(s1.length() - 1);
                 }
-                return flag;
             }
+            return flag;
         };
         Set<String> result = new TreeSet<>(revers);
         result.addAll(list);

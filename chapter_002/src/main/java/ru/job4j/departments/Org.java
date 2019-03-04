@@ -1,12 +1,12 @@
 package ru.job4j.departments;
 
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 
 public class Org {
 
+    private List<String> departments = List.of("K1", "SK1", "SSK1");
     private Set<String> departmentsLvls = new TreeSet<>(
             List.of("K1",
                     "K1/SK1",
