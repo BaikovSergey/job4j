@@ -1,9 +1,6 @@
 package ru.job4j.departments;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 
 /**
  * @author Sergey Baikov
@@ -16,11 +13,11 @@ public class DepartmentSort {
      * @param list список департаментов
      * @return сортированый список
      */
-    public List<String> sort(List<String> list) {
-        List<String> result = new ArrayList<>(list);
+    public Set<String> sort(Set<String> list) {
+        Set<String> result = new TreeSet<>(list);
         result = addDepLvl(result);
-        Collections.sort(result);
         return result;
+
     }
 
     /**
@@ -28,8 +25,7 @@ public class DepartmentSort {
      * @param list список департаментов
      * @return сортированый список
      */
-    public List<String> sortRevers(List<String> list) {
-        List<String> result = new ArrayList<>(list);
+    public Set<String> sortRevers(Set<String> list) {
         Comparator<String> revers = new Comparator<String>() {
             @Override
             public int compare(String s1, String s2) {
@@ -43,8 +39,9 @@ public class DepartmentSort {
                 return flag;
             }
         };
-        result = addDepLvl(result);
-        result.sort(revers);
+        Set<String> result = new TreeSet<>(revers);
+        result.addAll(list);
+        result.addAll(addDepLvl(result));
         return result;
     }
 
@@ -53,19 +50,11 @@ public class DepartmentSort {
      * @param list список департаментов
      * @return дополненый список
      */
-    public List<String> addDepLvl(List<String> list) {
-        List<String> result = new ArrayList<>(list);
-        for(int i = 0; i < result.size(); i++) {
-            String[] buffer = result.get(i).split("/");
-            if(buffer.length >= 2) {
-                if(!result.contains(buffer[0])) {
-                    result.add(buffer[0]);
-                }
-                if(!result.contains(buffer[0] + "/" + buffer[1])) {
-                    result.add(buffer[0] + "/" + buffer[1]);
-                }
-            }
-        }
+    public Set<String> addDepLvl(Set<String> list) {
+        Set<String> result = new HashSet<>(list);
+        Org lvls = new Org();
+        Set<String> temp = lvls.getDepartmentsLvls();
+        result.addAll(temp);
         return result;
     }
 }
