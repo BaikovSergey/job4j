@@ -21,7 +21,7 @@ public class BishopBlack implements Figure {
     public Cell position() {
         return this.position;
     }
-
+//Возвращать список координат
     @Override
     public Cell[] way(Cell source, Cell dest) throws ImpossibleMoveException {
         int startX = source.x;
@@ -30,9 +30,7 @@ public class BishopBlack implements Figure {
         if (isDiagonal(source, dest)) {
             steps = new Cell[dest.x - source.x];
             for (int i = 0; startX == dest.x && startY == dest.y; i++) {
-                steps[i] = Cell.A1;
-                startX++;
-                startY++;
+
             }
 
         }
