@@ -5,6 +5,7 @@ import org.junit.Test;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
+import java.util.OptionalInt;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
@@ -15,27 +16,9 @@ public class StreamAPITest {
     @Test
     public void whenFilterEvenNumbersThenOnlyEvenNumbersLeft() {
         StreamAPI test = new StreamAPI();
-        List<Integer> list = Arrays.asList(1, 2, 3);
-        List<Integer> result = test.evenFilter(list);
-        List<Integer> expect = Arrays.asList(2);
-        assertThat(result, is(expect));
-    }
-
-    @Test
-    public void whenAllElementsToSquareThenAllElementsToSquare() {
-        StreamAPI test = new StreamAPI();
-        List<Integer> list = Arrays.asList(1, 2, 3);
-        List<Integer> result = test.toSquare(list);
-        List<Integer> expect = Arrays.asList(1, 4, 9);
-        assertThat(result, is(expect));
-    }
-
-    @Test
-    public void whenSumOfElementsThenSix() {
-        StreamAPI test = new StreamAPI();
-        List<Integer> list = Arrays.asList(1, 2, 3);
-        Optional<Integer> result = test.sumOfElements(list);
-        Optional<Integer> expect = Optional.of(6);
+        int[] array = {1, 2, 3, 4, 5};
+        OptionalInt result = test.evenSquareSum(array);
+        OptionalInt expect = OptionalInt.of(20);
         assertThat(result, is(expect));
     }
 }

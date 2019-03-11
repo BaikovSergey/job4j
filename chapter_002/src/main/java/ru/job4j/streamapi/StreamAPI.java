@@ -1,8 +1,9 @@
 package ru.job4j.streamapi;
 
-import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
+
+import java.util.Arrays;
+import java.util.OptionalInt;
+import java.util.stream.IntStream;
 
 /**
  * @author Sergey Baikov
@@ -12,35 +13,15 @@ import java.util.stream.Collectors;
 public class StreamAPI {
 
     /**
-     * Returns list of even elements.
-     * @param list list of even elements
-     * @return list of even elements
+     * Method filters even numbers of array, when takes square of this numbers and when takes sum of all.
+     * @param array array of even numbers
+     * @return sum
      */
-    public List<Integer> evenFilter(List<Integer> list) {
-        return list.stream()
+    public OptionalInt evenSquareSum(int[] array) {
+        IntStream test = Arrays.stream(array);
+        return test
                 .filter(integer -> integer % 2 == 0)
-                .collect(Collectors.toList());
-    }
-
-    /**
-     * Squaring all elements of list.
-     * @param list list of even elements
-     * @return list of squared elements
-     */
-    public List<Integer> toSquare(List<Integer> list) {
-        return list.stream()
                 .map(integer -> integer = (int) Math.pow(integer, 2))
-                .collect(Collectors.toList());
-    }
-
-    /**
-     * Return sum of all elements in the list.
-     * @param list list of even elements
-     * @return sum of elements
-     */
-    public Optional<Integer> sumOfElements(List<Integer> list) {
-        return list.stream()
                 .reduce((integer, integer2) -> integer + integer2);
-
     }
 }
