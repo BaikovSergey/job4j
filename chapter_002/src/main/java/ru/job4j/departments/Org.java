@@ -4,22 +4,17 @@ import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 
-public class Org {
+public class Org implements Comparable {
 
-    private List<String> departments = List.of("K1", "SK1", "SSK1");
-    private Set<String> departmentsLvls = new TreeSet<>(
-            List.of("K1",
-                    "K1/SK1",
-                    "K1/SK1/SSK1",
-                    "K1/SK1/SSK2",
-                    "K1/SK2",
-                    "K2",
-                    "K2/SK1",
-                    "K2/SK1/SSK1",
-                    "K2/SK1/SSK2")
-    );
+    List dep = null;
 
-    public Set<String> getDepartmentsLvls() {
-        return this.departmentsLvls;
+    public Org(List dep) {
+        this.dep = dep;
+    }
+
+
+    @Override
+    public int compareTo(Object o) {
+        return this.dep.size();
     }
 }

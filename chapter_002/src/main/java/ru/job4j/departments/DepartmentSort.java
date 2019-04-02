@@ -48,10 +48,12 @@ public class DepartmentSort {
      * @return дополненый список
      */
     public Set<String> addDepLvl(Set<String> list) {
-        Set<String> result = new HashSet<>(list);
-        Org lvls = new Org();
-        Set<String> temp = lvls.getDepartmentsLvls();
-        result.addAll(temp);
+        Set<String> result = new TreeSet<>(list);
+        for (int i = 0; i < list.size(); i++) {
+            Org temp = new Org(Arrays.asList(result.iterator().next().split("/")));
+
+
+        }
         return result;
     }
 }
