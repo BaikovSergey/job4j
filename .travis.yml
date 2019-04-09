@@ -16,3 +16,7 @@ notifications:
       -rayleonard9@gmail.com
     on_success: never # default: change
     on_failure: always # default: always
+
+env:
+  global:
+  - CODECOV_TOKEN="790cd7c3-65bd-4c3e-aba3-fbfb37866aa3"
