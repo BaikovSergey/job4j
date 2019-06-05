@@ -59,10 +59,6 @@ public class MenuTracker {
         this.actions.add(new ExitProgram(6, "Завершить работу программы.", ui));
     }
 
-    public void addAction(UserAction action) {
-        //this.actions[position++] = action;
-    }
-
     /**
      * Метод в зависимости от указанного ключа, выполняет соотвествующие действие.
      *

@@ -8,17 +8,12 @@ import java.util.Objects;
  * @version $2$
  * @since 12.11.18
  */
-public class Tracker {
+public class Tracker implements ITracker {
 
     /**
      * Список для хранение заявок.
      */
     private final List<Item> items = new ArrayList<>();
-
-    /**
-     * Указатель ячейки для новой заявки.
-     */
-    private int  position = 0;
 
     /**
      * Метод реализаущий добавление заявки в хранилище

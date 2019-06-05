@@ -11,35 +11,6 @@ import java.util.function.Consumer;
  * @since 19.11.18
  */
 public class StartUI {
-    /**
-     * Константа меню для добавления новой заявки.
-     */
-    private static final String ADD = "0";
-
-    /**
-     * Константа для вывода всех заявок.
-     */
-    private static final String FINDALL = "1";
-
-    /**
-     * Константа меню для замены заявки.
-     */
-    private static final String REPLACE = "2";
-
-    /**
-     * Константа меню для удаления заявки.
-     */
-    private static final String DELETE = "3";
-
-    /**
-     * Константа меню для поиска заявки по Id.
-     */
-    private static final String FINDBYID = "4";
-
-    /**
-     * Константа меню для поиска заявки по Id.
-     */
-    private static final String FINDBYNAME = "5";
 
     private final Consumer<String> output;
 
